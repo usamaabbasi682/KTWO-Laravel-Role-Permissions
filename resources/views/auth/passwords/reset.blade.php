@@ -6,7 +6,7 @@
 @section('title','Reset Password | KTWO')
 @section('heading','Branding tools designed for your business')
 @section('content')
-<form class="form w-100" method="POST" action="{{ route('password.update') }}">
+<form class="form w-100" id="setup_new_password" method="POST" action="{{ route('password.update') }}">
     {{ csrf_field() }}
     <input type="hidden" name="token" value="{{ $token }}">
     <!--begin::Heading-->
@@ -52,9 +52,6 @@
             <!--end::Input wrapper-->
         </div>
         <!--end::Wrapper-->
-        <!--begin::Hint-->
-        <div class="text-muted">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
-        <!--end::Hint-->
     </div>
     <!--end::Input group=-->
     <!--end::Input group=-->

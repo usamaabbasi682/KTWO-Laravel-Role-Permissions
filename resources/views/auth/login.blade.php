@@ -6,7 +6,7 @@
 @section('title','Login | KTWO')
 @section('heading','Branding tools designed for your business')
 @section('content')
-<form class="form w-100" action="{{ route('login') }}" method="POST">
+<form class="form w-100" id="login_form" action="{{ route('login') }}" method="POST">
     {{ csrf_field() }}
     <!--begin::Heading-->
     <div class="text-center mb-11">

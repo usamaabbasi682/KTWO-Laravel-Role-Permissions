@@ -6,7 +6,7 @@
 @section('title','Register | KTWO')
 @section('heading','Branding tools designed for your business')
 @section('content')
-<form class="form w-100" method="POST" action="{{ route('register') }}" >
+<form class="form w-100" id="register_form" method="POST" action="{{ route('register') }}" >
     {{ csrf_field() }}
     <!--begin::Heading-->
     <div class="text-center mb-11">
@@ -81,7 +81,7 @@
         </div>
         <!--end::Wrapper-->
         <!--begin::Hint-->
-        <div class="text-muted">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
+        {{-- <div class="text-muted">Use 8 or more characters with a mix of letters, numbers & symbols.</div> --}}
         <!--end::Hint-->
     </div>
     <!--end::Input group=-->

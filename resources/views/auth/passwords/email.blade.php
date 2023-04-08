@@ -6,7 +6,7 @@
 @section('title','Forgot Password | KTWO')
 @section('heading','Branding tools designed for your business')
 @section('content')
-<form class="form w-100" method="POST" action="{{ route('password.email') }}">
+<form class="form w-100" id="forgot_password_form" method="POST" action="{{ route('password.email') }}">
     {{ csrf_field() }}
     <!--begin::Heading-->
     <div class="text-center mb-10">
