@@ -33,6 +33,16 @@
 <div class="content flex-row-fluid" id="kt_content">
     <!--begin::Card-->
     <div class="card">
+        @if (session('success'))
+            <x-alert class="alert-success">
+                <strong>Success!</strong> {{ session('success') }}
+            </x-alert>
+        @endif
+        @if (session('error'))
+            <x-alert class="alert-danger">
+                <strong>Error!</strong> {{ session('error') }}
+            </x-alert>
+        @endif
         <!--begin::Card header-->
         <div class="card-header border-0 pt-6">
             <!--begin::Card title-->
@@ -234,8 +244,12 @@
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
+                                <div class="menu-item px-3"> 
+                                    <form action="{{ route('users.destroy',$user) }}" method="post">
+                                        {{ csrf_field() }}
+                                        @method('DELETE')
+                                        <input type="submit" onclick="return confirm('Are you sure you want to delete?')" value="Delete" class="menu-link px-3 form-control b_none" />
+                                    </form>
                                 </div>
                                 <!--end::Menu item-->
                             </div>

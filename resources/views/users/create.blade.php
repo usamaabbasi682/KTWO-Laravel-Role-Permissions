@@ -26,6 +26,13 @@
         </ul>
         <!--end::Breadcrumb-->
     </div>
+    <div class="d-flex align-items-center">
+        <!--begin::Daterange-->
+        <a href="{{ route('users.index') }}" class="btn btn-light me-3 btn-sm">
+            Back
+        </a>
+        <!--end::Daterange-->
+     </div
     <!--end::Page title-->
 </div>
 @endsection 
@@ -109,7 +116,7 @@
                             <label class="form-label fw-bold fs-6 text-gray-700">Role</label>
                             <!--end::Label-->
                             <!--begin::Select-->
-                            <select name="currnecy" aria-label="Select a Timezone" data-control="select2" data-placeholder="Select currency" class="form-select form-select-solid">
+                            <select name="role" aria-label="Select a Timezone" data-control="select2" data-placeholder="Select currency" class="form-select form-select-solid">
                                 <option value=""></option>
                                 @forelse ($roles as $role)
                                 <option data-kt-flag="flags/united-states.svg" value="{{ $role->name ?? '' }}" @selected($loop->iteration == 1)>
@@ -135,7 +142,7 @@
                             <!--begin::Switch-->
                             <label class="form-check form-switch form-check-custom form-check-solid">
                                 <!--begin::Input-->
-                                <input class="form-check-input" name="billing" type="checkbox" value="1">
+                                <input class="form-check-input" name="verify" type="checkbox" value="1">
                                 <!--end::Input-->
                             </label>
                             <!--end::Switch-->
