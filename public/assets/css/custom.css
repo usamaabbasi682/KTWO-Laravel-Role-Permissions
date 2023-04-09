@@ -2,3 +2,7 @@
     color: #f1416c;
     font-weight: bold;
 }
+
+.b_none {
+    border: 0px;
+}

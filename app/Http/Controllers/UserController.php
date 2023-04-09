@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
-use App\Http\Requests\User\UserAddRequest;
+use App\Http\Requests\User\{UserAddRequest,UserEditRequest};
+use App\Repositories\UserRepository;
 use App\Models\User;
 
 class UserController extends Controller
 {
+
+    public function __construct(protected UserRepository $userRepository) {
+        $this->userRepository = $userRepository;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -33,7 +38,11 @@ class UserController extends Controller
      */
     public function store(UserAddRequest $request)
     {
-        $request->validated();
+        $response = $this->userRepository->create_user($request);
+        if ($response) {
+            return to_route('users.index')->with('success','User has been successfully Added');
+        } 
+        return to_route('users.index')->with('error','Something went wrong!');
     }
 
     /**
@@ -56,16 +65,21 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserEditRequest $request, User $user)
     {
-        //
+        $response = $this->userRepository->update_user($request,$user);
+        if ($response) {
+            return to_route('users.index')->with('success','User has been successfully Updated.');
+        } 
+        return to_route('users.index')->with('error','Something went wrong!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return to_route('users.index')->with('error','User deleted successfully.');
     }
 }
