@@ -24,5 +24,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
         ]);
         $user->assignRole(['name' => 'admin']);
+
+        User::factory(10)->create()->each(function($user){
+            $user->assignRole('user');
+        });
     }
 }

@@ -84,22 +84,22 @@
                                 <label class="form-label fs-6 fw-semibold">Role:</label>
                                 <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="role" data-hide-search="true">
                                     <option></option>
-                                    <option value="Administrator">Administrator</option>
-                                    <option value="Analyst">Analyst</option>
-                                    <option value="Developer">Developer</option>
-                                    <option value="Support">Support</option>
-                                    <option value="Trial">Trial</option>
+                                    @forelse ($roles as $role)
+                                        <option value="{{ $role->name }}">{{ Str::ucfirst($role->name) }}</option>  
+                                    @empty
+                                        
+                                    @endforelse
                                 </select>
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
-                            <div class="mb-10">
+                            {{-- <div class="mb-10">
                                 <label class="form-label fs-6 fw-semibold">Two Step Verification:</label>
                                 <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-user-table-filter="two-step" data-hide-search="true">
                                     <option></option>
                                     <option value="Enabled">Enabled</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <!--end::Input group-->
                             <!--begin::Actions-->
                             <div class="d-flex justify-content-end">
@@ -154,7 +154,7 @@
                         <th class="min-w-125px">User</th>
                         <th class="min-w-125px">Role</th>
                         <th class="min-w-125px">Last login</th>
-                        <th class="min-w-125px">Two-step</th>
+                        <th class="min-w-125px">Email-Verification</th>
                         <th class="min-w-125px">Joined Date</th>
                         <th class="text-end min-w-100px">Actions</th>
                     </tr>
@@ -193,7 +193,11 @@
                         </td>
                         <!--end::User=-->
                         <!--begin::Role=-->
-                        <td>Administrator</td>
+                        <td>
+                            @foreach ($user->getRoleNames() as $role)
+                                <span class="badge badge-light-primary fs-7 m-1">{{ Str::ucfirst($role) ?? '' }}</span>
+                            @endforeach
+                        </td>
                         <!--end::Role=-->
                         <!--begin::Last login=-->
                         <td>
@@ -201,7 +205,13 @@
                         </td>
                         <!--end::Last login=-->
                         <!--begin::Two step=-->
-                        <td></td>
+                        <td>
+                            @if ($user->email_verified_at != null)
+                                <span class="badge badge-light-success fs-7 m-1">{{ __('Verified') }}</span>
+                            @else
+                                <span class="badge badge-light-danger fs-7 m-1">{{ __('In Progress') }}</span>  
+                            @endif
+                        </td>
                         <!--end::Two step=-->
                         <!--begin::Joined-->
                         <td>{{ $user->created_at->format('d-m-y h:i A') }}</td>
