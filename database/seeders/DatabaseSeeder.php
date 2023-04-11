@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $user->assignRole(['name' => 'admin']);
 
-        User::factory(10)->create()->each(function($user){
+        User::factory(20)->create()->each(function($user){
             $user->assignRole('user');
         });
     }

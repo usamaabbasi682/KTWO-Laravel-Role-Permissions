@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\{
+    HomeController,
+    UserController,
+    RoleController,
+};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +26,11 @@ Auth::routes(['verify'=>true]);
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    // Custom Route
+    Route::delete('/delete_checked_users',[UserController::class,'destroyCheckUser'])->name('delete_checked_user');
+    // Resource Routes
     Route::get('/home', [HomeController::class, 'index'])->name('home');    
     Route::resource('/users', UserController::class);
+    Route::resource('/roles', RoleController::class);
 });
 

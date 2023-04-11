@@ -50,7 +50,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return to_route('users.index');
     }
 
     /**
@@ -81,5 +81,12 @@ class UserController extends Controller
     {
         $user->delete();
         return to_route('users.index')->with('error','User deleted successfully.');
+    }
+
+    public function destroyCheckUser(Request $request) {
+        $user=User::destroy($request->input('user_ids'));
+        if ($user) {
+            return true;
+        }
     }
 }
