@@ -32,10 +32,10 @@
 			<!--begin::Header tabs-->
 			<ul class="nav flex-nowrap text-nowrap">
 			  <li class="nav-item">
-				<a class="nav-link active" data-bs-toggle="tab" href="#kt_header_navs_tab_1">Dashboard</a>
+				<a class="nav-link " data-bs-toggle="tab" href="#kt_header_navs_tab_1">Dashboard</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" data-bs-toggle="tab" href="#kt_header_navs_tab_2">Users</a>
+				<a class="nav-link {{ request()->is('users') ? 'active' : '' }}" data-bs-toggle="tab" href="#kt_header_navs_tab_2">Users</a>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" data-bs-toggle="tab" href="#kt_header_navs_tab_3">Applications</a>

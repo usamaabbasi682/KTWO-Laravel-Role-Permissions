@@ -1,5 +1,6 @@
 <title>@yield('title','KTWO')</title>
 <meta charset="utf-8" />
+<meta name="_token" content="{{ csrf_token() }}">
 <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
 <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
 <!--begin::Fonts(mandatory for all pages)-->
@@ -13,4 +14,5 @@
 <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 <!--end::Global Stylesheets Bundle-->
+
  
