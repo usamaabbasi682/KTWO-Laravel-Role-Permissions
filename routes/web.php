@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     HomeController,
     UserController,
     RoleController,
+    PermissionController,
 };
 
 /*
@@ -32,5 +33,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');    
     Route::resource('/users', UserController::class);
     Route::resource('/roles', RoleController::class);
+    Route::resource('/permissions', PermissionController::class);
 });
 

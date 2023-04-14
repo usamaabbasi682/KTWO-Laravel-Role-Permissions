@@ -5,7 +5,7 @@
     <!--begin::Page title-->
     <div class="page-title d-flex flex-column align-items-start me-3 py-2 py-lg-0 gap-2">
         <!--begin::Title-->
-        <h1 class="d-flex text-dark fw-bold m-0 fs-3">Add Role</h1>
+        <h1 class="d-flex text-dark fw-bold m-0 fs-3">Add Permission</h1>
         <!--end::Title-->
         <!--begin::Breadcrumb-->
         <ul class="breadcrumb breadcrumb-dot fw-semibold text-gray-600 fs-7">
@@ -15,20 +15,20 @@
             </li>
             <!--end::Item-->
             <!--begin::Item-->
-            <li class="breadcrumb-item text-gray-600">Role Management</li>
+            <li class="breadcrumb-item text-gray-600">Permission Management</li>
             <!--end::Item-->
             <!--begin::Item-->
-            <li class="breadcrumb-item text-gray-600">Roles</li>
+            <li class="breadcrumb-item text-gray-600">Permissions</li>
             <!--end::Item-->
             <!--begin::Item-->
-            <li class="breadcrumb-item text-gray-500">Add Role</li>
+            <li class="breadcrumb-item text-gray-500">Add Permission</li>
             <!--end::Item-->
         </ul>
         <!--end::Breadcrumb-->
     </div>
     <div class="d-flex align-items-center">
         <!--begin::Daterange-->
-        <a href="{{ route('roles.index') }}" class="btn btn-light me-3 btn-sm">
+        <a href="{{ route('permissions.index') }}" class="btn btn-light me-3 btn-sm">
             Back
         </a>
         <!--end::Daterange-->
@@ -48,7 +48,7 @@
                 <div class="card-header pt-7" id="kt_chat_contacts_header">
                     <!--begin::Card title-->
                     <div class="card-title">
-                        <h2>Add Role</h2>
+                        <h2>Add Permission</h2>
                     </div>
                     <!--end::Card title-->
                 </div>
@@ -56,19 +56,19 @@
                 <!--begin::Card body-->
                 <div class="card-body pt-5">
                     <!--begin::Form-->
-                    <form class="form" action="{{ route('roles.store') }}" method="POST">
+                    <form class="form" action="{{ route('permissions.store') }}" method="POST">
                         {{ csrf_field() }}
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
                             <label class="fs-6 fw-semibold form-label mt-3">
-                                <span class="required">Role Name</span>
-                                {{-- <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Enter the contact's name."></i> --}}
+                                <span class="required">Permission Name</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-html="true" data-bs-content="Permission name is required to be unique."></i>
                             </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" value="{{ old('role') }}" name="role" autofocus placeholder="Enter Role" />
-                            @error('role')
+                            <input type="text" class="form-control form-control-solid" value="{{ old('permission') }}" name="permission" autofocus placeholder="Enter Permission" />
+                            @error('permission')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
                                 </span>

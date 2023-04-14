@@ -65,7 +65,7 @@
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
                             <label class="fs-6 fw-semibold form-label mt-3">
-                                <span class="required">Role</span>
+                                <span class="required">Role Name</span>
                                 {{-- <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Enter the contact's name."></i> --}}
                             </label>
                             <!--end::Label-->

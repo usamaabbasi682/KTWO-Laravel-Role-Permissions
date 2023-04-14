@@ -207,7 +207,7 @@
                         <!--begin::Role=-->
                         <td>
                             @foreach ($user->getRoleNames() as $role)
-                                <span class="badge badge-dark fs-7 m-1">{{ Str::ucfirst($role) ?? '' }}</span>
+                                <span class="badge badge-light-primary fs-7 m-1">{{ Str::ucfirst($role) ?? '' }}</span>
                             @endforeach
                         </td>
                         <!--end::Role=-->
@@ -250,7 +250,7 @@
                                     <form action="{{ route('users.destroy',$user) }}" method="post">
                                         {{ csrf_field() }}
                                         @method('DELETE')
-                                        <input type="submit" onclick="return confirm('Are you sure you want to delete?')" value="Delete" class="btn btn-light btn-active-light-danger p-2 form-control b_none" />
+                                        <input type="submit" style="text-align: left;" onclick="return confirm('Are you sure you want to delete?')" value="Delete" class="btn btn-light btn-active-light-danger p-2 form-control b_none" />
                                     </form>
                                 </div>
                                 <!--end::Menu item-->
