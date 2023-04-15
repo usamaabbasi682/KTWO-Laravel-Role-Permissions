@@ -3,6 +3,7 @@ $(document).ready(function () {
         headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
     });
 
+    // Users page code for deleting multiple users
     var del_ids=[];
     $('#delete_selected').click(function() 
     {
@@ -29,4 +30,20 @@ $(document).ready(function () {
             });  
         }
     });
+    // End
+
+    // Roles View page code for select multiple permissions
+    $('#kt_roles_select_all').click(function () {    
+        $('input:checkbox').prop('checked', this.checked);    
+    });
+    //End
+
+    // Roles view page , Search permissions 
+    $('#items-to-search > div').jqSearch({
+        searchInput:'#search',
+        searchTarget:'data',
+        animation:'slide'
+      });
+    // End
+      
 });
