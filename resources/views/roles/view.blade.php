@@ -52,7 +52,7 @@
                 <!--end::Card header-->
                 <!--begin::Card body-->
                 <div class="card-body pt-5">
-                    <form id="kt_modal_update_role_form" class="form" action="#" method="POST">
+                    <form id="kt_modal_update_role_form" class="form" action="{{ route('assign-permission.role',$role) }}" method="POST">
                         {{ csrf_field() }}
                         <!--begin::Scroll-->
                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_role_header" data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px">
@@ -110,17 +110,41 @@
 
                             <div class="row mt-2" id="items-to-search">
                                 <!--begin::Label-->
-                                <label class="fs-5 fw-bold form-label mb-2">Permissions</label>
+                                <label class="fs-5 fw-bold form-label mb-2">Non Selected Permissions</label>
                                 <!--end::Label-->
-                                @forelse ($permissions as $permission)
-                                <div class="col-md-4 mt-3" data-search-data="{{ $permission->name ?? '' }}">
+                                @forelse ($notSelectedPermissions as $n_s_p)
+
+                                <div class="col-md-4 mt-3" data-search-data="{{ $n_s_p->name ?? '' }}">
                                     <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                        <input class="form-check-input" type="checkbox" value="" name="user_management_read" />
-                                        <span class="form-check-label">{{ Str::ucfirst($permission->name) ?? '' }}</span>
+                                        <input class="form-check-input" type="checkbox" value="{{ $n_s_p->name ?? '' }}" name="permission[]" />
+                                        <span class="form-check-label">{{ Str::ucfirst($n_s_p->name) ?? '' }}</span>
                                     </label>
                                 </div>
                                 @empty
-                                    
+                                <div class="col-md-12 mt-3">
+                                    <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                        <span class="form-check-label text-danger">{{ __('No Permission Found!') }}</span>
+                                    </label>
+                                </div>
+                                @endforelse
+
+                                <!--begin::Label-->
+                                <label class="fs-5 fw-bold form-label mb-2 mt-3">Selected Permissions</label>
+                                <!--end::Label-->
+                                @forelse ($selectedPermissions as $s_p)
+
+                                <div class="col-md-4 mt-3" data-search-data="{{ $s_p->name ?? '' }}">
+                                    <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                        <input class="form-check-input" type="checkbox" checked value="{{ $s_p->name ?? '' }}" name="permission[]" />
+                                        <span class="form-check-label">{{ Str::ucfirst($s_p->name) ?? '' }}</span>
+                                    </label>
+                                </div>
+                                @empty
+                                <div class="col-md-12 mt-3">
+                                    <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                        <span class="form-check-label text-danger">{{ __('No Permission Found!') }}</span>
+                                    </label>
+                                </div>
                                 @endforelse
                             </div>
                             <!--end::Permissions-->
@@ -133,7 +157,7 @@
                             <button type="reset" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</button>
                             <!--end::Button-->
                             <!--begin::Button-->
-                            <button type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
+                            <button @disabled($permissions->count() == 0) type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
                                 <span class="indicator-label">Save</span>
                             </button>
                             <!--end::Button-->

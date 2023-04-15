@@ -41,7 +41,9 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         $permissions = Permission::latest()->get();
-        return view('roles.view',compact('role','permissions'));
+        $notSelectedPermissions = Permission::whereNotIn('name',$role->getPermissionNames())->get();        
+        $selectedPermissions = Permission::whereIn('name',$role->getPermissionNames())->get();
+        return view('roles.view',compact('role','notSelectedPermissions','selectedPermissions','permissions'));
     }
 
     /**
@@ -69,5 +71,14 @@ class RoleController extends Controller
     {
         $role->delete();
         return to_route('roles.index')->with('error','Role deleted successfully.');
+    }
+
+    /**
+     * Assign permissions to roles
+     */
+    public function assignPermissions(Request $request,Role $role)
+    {
+        $role->syncPermissions($request->input('permission'));
+        return to_route('roles.index')->with('success','Permissions has been successfully Assigned to '.$role->name);
     }
 }
