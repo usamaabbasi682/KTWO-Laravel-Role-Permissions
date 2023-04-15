@@ -21,4 +21,5 @@
 <script src={{ asset('assets/js/custom/utilities/modals/create-app.js') }}></script>
 <script src={{ asset('assets/js/custom/utilities/modals/users-search.js') }}></script> 
 <script src="{{ asset('assets/js/custom/custom-jquery.js') }}"></script>
+<script src={{ asset('assets/js/custom/jquery-search.js') }}></script>
 <!--end::Custom Javascript-->
