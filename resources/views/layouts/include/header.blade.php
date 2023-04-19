@@ -245,15 +245,16 @@
 		<div class="d-flex align-items-center ms-1" id="kt_header_user_menu_toggle">
 		  <!--begin::User info-->
 		  <div class="btn btn-flex align-items-center bg-hover-white bg-hover-opacity-10 py-2 px-2 px-md-3" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-			<!--begin::Name-->
-			<div class="d-none d-md-flex flex-column align-items-end justify-content-center me-2 me-md-4">
-			  <span class="text-white opacity-75 fs-8 fw-semibold lh-1 mb-1">Max</span>
-			  <span class="text-white fs-8 fw-bold lh-1">UX Designer</span>
-			</div>
-			<!--end::Name-->
 			<!--begin::Symbol-->
-			<div class="symbol symbol-30px symbol-md-40px">
-			  <img src="{{ asset('assets/media/avatars/300-1.jpg') }}" alt="image" />
+			<div class="symbol symbol-30px symbol-md-40px"> 
+				@php
+					$image=auth()->user()->getMedia('profile')->first()
+				@endphp
+				@isset($image)
+					<img src="{{ asset('storage/'.$image->id.'/'.$image->file_name) ?? '' }}" alt="image" />
+				@else 
+					<img src="{{ asset('assets/media/svg/avatars/blank.svg') }}" alt="image" />
+				@endisset
 			</div>
 			<!--end::Symbol-->
 		  </div>
@@ -265,13 +266,20 @@
 			  <div class="menu-content d-flex align-items-center px-3">
 				<!--begin::Avatar-->
 				<div class="symbol symbol-50px me-5">
-				  <img alt="Logo" src="assets/media/avatars/300-1.jpg" />
+					@php
+						$image=auth()->user()->getMedia('profile')->first()
+					@endphp
+					@isset($image)
+						<img src="{{ asset('storage/'.$image->id.'/'.$image->file_name) ?? '' }}" alt="image" />
+					@else 
+						<img src="{{ asset('assets/media/svg/avatars/blank.svg') }}" alt="image" />
+					@endisset
 				</div>
 				<!--end::Avatar-->
 				<!--begin::Username-->
 				<div class="d-flex flex-column">
-				  <div class="fw-bold d-flex align-items-center fs-5">Max Smith <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span></div>
-				  <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com</a>
+				  <div class="fw-bold d-flex align-items-center fs-5">{{ auth()->user()->name ?? '--' }} <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{ Str::ucfirst(auth()->user()->getRoleNames()[0]) ?? '' }}</span></div>
+				  <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ auth()->user()->email ?? '' }}</a>
 				</div>
 				<!--end::Username-->
 			  </div>
