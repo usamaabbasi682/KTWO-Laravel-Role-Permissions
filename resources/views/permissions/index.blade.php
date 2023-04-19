@@ -109,7 +109,7 @@
                         <!--begin::Assigned to=-->
                         <td>
                             @forelse ($permission->getRoleNames() as $role)
-                                <a href="javascript:void(0)" class="badge badge-light-primary fs-7 m-1">Administrator</a>
+                                <a href="javascript:void(0)" class="badge badge-light-primary fs-7 m-1">{{ Str::ucfirst($role) ?? '' }}</a>
                             @empty
                                 <a href="javascript:void(0)" class="badge badge-light-danger fs-7 m-1">None</a>
                             @endforelse

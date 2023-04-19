@@ -63,10 +63,19 @@
                     <div class="fw-bold text-gray-600 mb-5">Total users with this role: {{ $role->users->count(); }}</div>
                     <!--end::Users-->
                     <!--begin::Permissions-->
-                    <div class="d-flex flex-column text-gray-600">
+                    @php($permissionCount = $role->getPermissionNames()->count())
+                    <div class="d-flex flex-column text-gray-600" >
                         @forelse ($role->getPermissionNames() as $permission)
-                            <div class="d-flex align-items-center py-2 text-primary">
-                            <span class="bullet bg-primary me-3"></span>{{ Str::ucfirst($permission) ?? '' }}</div>
+                            @if ($loop->iteration <= 4)
+                                <div class="d-flex align-items-center py-2 text-primary" style="margin-bottom: -9px;">
+                                <span class="bullet bg-primary me-3"></span>{{ Str::ucfirst($permission) ?? '' }}</div>
+                            @else   
+                                @if ($permissionCount > 4 && $loop->last)
+                                    @php($remaning = $permissionCount-4)
+                                    <div class="d-flex align-items-center py-2 text-primary" style="margin-bottom: -9px;">
+                                    <span class="bullet bg-primary me-3"></span>{{ 'and '.$remaning.' more...' ?? '' }}</div> 
+                                @endif                           
+                            @endif
                         @empty
                             <div class="d-flex align-items-center py-2 text-danger">
                             <span class="bullet bg-danger me-3"></span>No Permission Found</div>

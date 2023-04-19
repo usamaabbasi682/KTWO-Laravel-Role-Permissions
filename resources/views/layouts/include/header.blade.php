@@ -282,7 +282,7 @@
 			<!--end::Menu separator-->
 			<!--begin::Menu item-->
 			<div class="menu-item px-5">
-			  <a href="../../demo20/dist/account/overview.html" class="menu-link px-5">My Profile</a>
+			  <a href="{{ route('profile.show') }}" class="menu-link px-5">My Profile</a>
 			</div>
 			<!--end::Menu item-->
 			<!--begin::Menu item-->
