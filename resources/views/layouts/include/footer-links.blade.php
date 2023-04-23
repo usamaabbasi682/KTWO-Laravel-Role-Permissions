@@ -13,6 +13,7 @@
 <script src={{ asset('assets/js/custom/apps/user-management/permissions/list.js') }}></script>
 <script src={{ asset('assets/js/custom/apps/user-management/permissions/add-permission.js') }}></script>
 <script src={{ asset('assets/js/custom/apps/user-management/permissions/update-permission.js') }}></script>
+<script src={{ asset('assets/js/custom/account/settings/signin-methods.js') }}></script>
 <script src={{ asset('assets/js/widgets.bundle.js') }}></script>
 <script src={{ asset('assets/js/custom/widgets.js') }}></script>
 <script src={{ asset('assets/js/custom/apps/chat/chat.js') }}></script>

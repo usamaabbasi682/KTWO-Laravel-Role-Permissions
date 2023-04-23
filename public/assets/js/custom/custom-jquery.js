@@ -45,5 +45,61 @@ $(document).ready(function () {
         animation:'slide'
       });
     // End
+
+    // setTimeout(function(){ 
+    //     $('#email_address_for_change_email').hide(); 
+    // }, 3000);
+
+    // Updating User Email
+    $('#btn_update_email').click(function(e) { 
+        e.preventDefault();
+        var $url = $('#form_change_email').attr('action');
+        var $email = $('input:text[name=email]').val();
+        var $password = $('input:password[name=confirm_password_for_email]').val();
+        $.ajax({
+            type: "POST",
+            url: $url,
+            data: {email:$email,password:$password},
+            success: function (response) {
+                if (response == '1') {
+                    $('#email_address_for_change_email').hide();
+                    $('#show_success_msg').css('display','');
+                    $('input:password[name=confirm_password_for_email]').val('');
+                    setTimeout(function(){ 
+                        location.reload();
+                    }, 3000);
+                } else {
+                    $('#email_address_for_change_email').html('<strong>'+response+'</strong>');
+                }
+            }
+        });
+    });
+    //End
+
+    $('#btn_change_password').click(function() {
+        var $url = $('#update_pwd').attr('action');
+        var $current_password = $('#currentpassword').val();
+        var $new_password = $('#newpassword').val();
+        var $confirm_password = $('#confirmpassword').val();
+        $.ajax({
+            type: "POST",
+            url: $url,
+            data: {current_password:$current_password,new_password:$new_password,confirm_password:$confirm_password},
+            success: function (response) {
+                if (response == '1') {
+                    $('#email_address_for_change_pwd').hide();
+                    $('#show_success_msg_for_change_pwd').css('display','');
+                    $('#currentpassword').val('');
+                    $('#newpassword').val('');
+                    $('#confirmpassword').val('');
+                    setTimeout(function(){ 
+                        location.reload();
+                    }, 3000);
+                } else {
+                    $('#email_address_for_change_pwd').html('<strong>'+response+'</strong>');
+                }
+            }
+        });
+    });
       
 });
