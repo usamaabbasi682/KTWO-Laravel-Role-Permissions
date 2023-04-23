@@ -1,5 +1,5 @@
 @extends('layouts.app') 
-@section('title','Settings | KTWO')
+@section('title','Profile | KTWO')
 @section('toolbar')
 <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap gap-2">
     <!--begin::Page title-->
