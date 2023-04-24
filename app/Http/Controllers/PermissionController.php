@@ -30,7 +30,14 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate(['permission'=>'required|unique:permissions,name']);
+        $request->validate([
+            'permission'=>['required','unique:permissions,name',function($attribute,$val,$fail) {
+                $explode = explode('-',$val);
+                if (reset($explode) != 'create' && reset($explode) != 'update' &&  reset($explode) != 'delete' &&  reset($explode) != 'view') {
+                    $fail('The first word should be one of the allowed words(create,update,delete,view)');
+                }
+            }]
+        ]);
         $permission = Permission::create(['name' => $request->input('permission')]);
         return to_route('permissions.index')->with('success','Permission has been successfully Created');
     }

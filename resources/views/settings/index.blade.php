@@ -74,7 +74,7 @@
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                     <i class="bi bi-pencil-fill fs-7"></i>
                                     <!--begin::Inputs-->
-                                    <input type="file" name="light_logo" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" name="light_logo" accept=".png, .jpg, .jpeg,.svg" />
                                     <input type="hidden" name="light_logo_remove" />
                                     <!--end::Inputs-->
                                 </label>
@@ -111,7 +111,7 @@
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                     <i class="bi bi-pencil-fill fs-7"></i>
                                     <!--begin::Inputs-->
-                                    <input type="file" name="dark_logo" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" name="dark_logo" accept=".png, .jpg, .jpeg,.svg" />
                                     <input type="hidden" name="dark_logo_remove" />
                                     <!--end::Inputs-->
                                 </label>
@@ -149,7 +149,7 @@
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                     <i class="bi bi-pencil-fill fs-7"></i>
                                     <!--begin::Inputs-->
-                                    <input type="file" name="favicon_icon" accept=".png, .jpg, .jpeg" />
+                                    <input type="file" name="favicon_icon" accept=".png, .jpg, .jpeg,.svg" />
                                     <input type="hidden" name="favicon_icon_remove" />
                                     <!--end::Inputs-->
                                 </label>
@@ -261,7 +261,7 @@
                             <div class="row">
                                 <!--begin::Col-->
                                 <div class="col-lg-12 fv-row">
-                                    <input type="text" name="mailer" value="{{ $mailer->mail_mailer ?? env('MAIL_MAILER') }}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Mailer..." />
+                                    <input type="text" name="mailer" value="{{ env('MAIL_MAILER') ?? '' }}" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Mailer..." />
                                     @error('mailer')
                                         <span class="text-danger">
                                             <strong>{{ $message }}</strong>
@@ -285,7 +285,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <input type="text" name="host"  value="{{ $mailer->mail_host ?? env('MAIL_HOST') }}" class="form-control form-control-lg form-control-solid" placeholder="Host..." />
+                            <input type="text" name="host"  value="{{ env('MAIL_HOST') ?? '' }}" class="form-control form-control-lg form-control-solid" placeholder="Host..." />
                             @error('host')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
@@ -305,7 +305,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <input type="text" name="port" value="{{ $mailer->mail_port ?? env('MAIL_PORT') }}" class="form-control form-control-lg form-control-solid" placeholder="Port..." />
+                            <input type="text" name="port" value="{{ env('MAIL_PORT') ?? '' }}" class="form-control form-control-lg form-control-solid" placeholder="Port..." />
                             @error('port')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
@@ -325,7 +325,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <input type="text" name="username" value="{{ $mailer->mail_username ?? '' }}" class="form-control form-control-lg form-control-solid" placeholder="Username..." />
+                            <input type="text" name="username" class="form-control form-control-lg form-control-solid" placeholder="Username..." />
                             @error('username')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
@@ -345,7 +345,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <input type="text" name="password" value="{{ $mailer->mail_pwd ?? '' }}" class="form-control form-control-lg form-control-solid" placeholder="Password..." />
+                            <input type="text" name="password" class="form-control form-control-lg form-control-solid" placeholder="Password..." />
                             @error('password')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
@@ -365,7 +365,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <input type="text" name="encryption" value="{{ $mailer->mail_enc ?? '' }}" class="form-control form-control-lg form-control-solid" placeholder="Encryption..." />
+                            <input type="text" name="encryption" class="form-control form-control-lg form-control-solid" placeholder="Encryption..." />
                             @error('encryption')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
@@ -385,7 +385,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <input type="text" name="from_address" value="{{ $mailer->mail_from_addr ?? '' }}" class="form-control form-control-lg form-control-solid" placeholder="From Address..." />
+                            <input type="text" name="from_address" class="form-control form-control-lg form-control-solid" placeholder="From Address..." />
                             @error('from_address')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
@@ -405,7 +405,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <input type="text" name="from_name" value="{{ $mailer->mail_from_name ?? '' }}" class="form-control form-control-lg form-control-solid" placeholder="From Name..." />
+                            <input type="text" name="from_name" class="form-control form-control-lg form-control-solid" placeholder="From Name..." />
                             @error('from_name')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>

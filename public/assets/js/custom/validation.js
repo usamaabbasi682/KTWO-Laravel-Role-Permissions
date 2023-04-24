@@ -1,6 +1,7 @@
 // Validation Custom Rules
 jQuery.validator.addMethod("strongPassword",function(value){
     return /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(value)},"Use 8 or more characters with a mix of uppercase, lowercase letters & numbers.");
+
 // END
 
 // Login Form Validation
@@ -58,4 +59,5 @@ $('#setup_new_password').validate({
         }
     }
 });
+
 

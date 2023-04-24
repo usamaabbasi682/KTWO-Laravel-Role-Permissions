@@ -76,6 +76,7 @@ $(document).ready(function () {
     });
     //End
 
+    // Change Password
     $('#btn_change_password').click(function() {
         var $url = $('#update_pwd').attr('action');
         var $current_password = $('#currentpassword').val();
@@ -101,5 +102,13 @@ $(document).ready(function () {
             }
         });
     });
-      
+    // End
+
+    // Convert each letter into lower case in laravel permissions
+    $('#permission_field').keyup(function(){
+        $va=$(this).val($(this).val().toLowerCase());    
+        $(this).val($(this).val().replace(/ /g,'-'));  
+        $(this).val($(this).val().replace(/_/g,'-'));  
+    });
+
 });

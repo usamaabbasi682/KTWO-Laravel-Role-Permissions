@@ -7,7 +7,8 @@ use App\Http\Controllers\{
     RoleController,
     PermissionController,
     ProfileController,
-    SettingController
+    SettingController,
+    ModelPermitController,
 };
 
 /*
@@ -42,5 +43,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/permissions', PermissionController::class);
     Route::singleton('/profile',ProfileController::class)->destroyable();
     Route::singleton('/settings',SettingController::class); 
+    Route::resource('/models',ModelPermitController::class);
 });
 
