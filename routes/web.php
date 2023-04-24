@@ -6,8 +6,8 @@ use App\Http\Controllers\{
     UserController,
     RoleController,
     PermissionController,
-    SettingController,
     ProfileController,
+    SettingController
 };
 
 /*
@@ -34,11 +34,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('assign-permission/roles/{role}',[RoleController::class,'assignPermissions'])->name('assign-permission.role');
     Route::post('change-email/users/{user}',[ProfileController::class,'change_email'])->name('user.change_email');
     Route::post('change-password/users/{user}',[ProfileController::class,'change_password'])->name('user.change_password');
+    Route::post('update-mail-settings',[SettingController::class,'update_mailer'])->name('mailer.update');
     // Resource Routes
     Route::get('/home', [HomeController::class, 'index'])->name('home');    
     Route::resource('/users', UserController::class);
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
     Route::singleton('/profile',ProfileController::class)->destroyable();
+    Route::singleton('/settings',SettingController::class); 
 });
 
