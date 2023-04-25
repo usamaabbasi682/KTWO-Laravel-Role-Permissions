@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mailer extends Model
+class ModelPermit extends Model
 {
     use HasFactory;
-    protected $table = "mailers";
+    protected $table = "model_permits";
     protected $primaryKey = 'id';
-
-    protected $guarded = [];
+    protected $fillable = [
+        'model_name',
+        'desc',
+    ];
 }

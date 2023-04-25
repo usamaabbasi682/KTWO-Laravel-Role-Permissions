@@ -5,6 +5,7 @@
 <!--begin::Vendors Javascript(used for this page only)-->
 <script src={{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}></script>
 <script src={{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used for this page only)-->
 <script src={{ asset('assets/js/custom/apps/user-management/users/list/table.js') }}></script>
@@ -23,4 +24,5 @@
 <script src={{ asset('assets/js/custom/utilities/modals/users-search.js') }}></script> 
 <script src="{{ asset('assets/js/custom/custom-jquery.js') }}"></script>
 <script src={{ asset('assets/js/custom/jquery-search.js') }}></script>
+<script src="{{ asset('assets/js/custom/validation.js') }}"></script>
 <!--end::Custom Javascript-->

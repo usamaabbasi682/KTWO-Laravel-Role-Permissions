@@ -3,12 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\{Setting,Mailer};
+use Illuminate\Support\Facades\{Auth,App};
+use App\Models\{Setting};
 use App\Http\Requests\Setting\MailerRequest;
 
 class SettingController extends Controller
 {
+
+    /**
+    * Function which update the env file.
+    */
+    public function setEnv($name, $value)
+    {
+        $path = base_path('.env');
+        if (file_exists($path)) {
+            file_put_contents($path, str_replace(
+                $name . '=' . env($name), $name . '=' . $value, file_get_contents($path)
+            ));
+        }
+    }
+
     /**
      * Show the form for creating the resource.
      */
@@ -31,11 +45,10 @@ class SettingController extends Controller
     public function show()
     {
         $settings = Setting::first();
-        $mailer = Mailer::first();
         $light_logo=$settings->getFirstMedia('light_logo');
         $dark_logo=$settings->getFirstMedia('dark_logo');
         $favicon_icon=$settings->getFirstMedia('favicon_icon');
-        return view('settings.index',compact('light_logo','dark_logo','favicon_icon','settings','mailer'));
+        return view('settings.index',compact('light_logo','dark_logo','favicon_icon','settings'));
     }
 
     /**
@@ -81,8 +94,14 @@ class SettingController extends Controller
                 }
                 $settings->addMediaFromRequest('favicon_icon')->toMediaCollection('favicon_icon');
             }
-    
-            $settings->update($validation);
+
+
+            // Updating Data in Table and .env file
+            if(env('APP_NAME') != $request->input('app_name') || env('APP_URL') != $request->input('app_url')) {
+                $settings->update($validation);
+                $this->setEnv('APP_NAME', $settings->app_name);
+                $this->setEnv('APP_URL', $request->app_url);
+            }
     
             return to_route('settings.show')->with('success','Setting Update Successfully.');
         } catch (\Exception $e) {
@@ -100,11 +119,18 @@ class SettingController extends Controller
 
     public function update_mailer(MailerRequest $request) {
         $request->validated();
-        $mailer = Mailer::first();
-        Mailer::updateOrCreate(
-            ['id' => $mailer->id],
-            ['mail_mailer' => $request->input('mailer'),'mail_host'=>$request->input('host'),'mail_port'=>$request->input('port'),'mail_username'=>$request->input('username'),'mail_pwd'=>$request->input('password'),'mail_enc'=>$request->input('encryption'),'mail_from_addr'=>$request->input('from_address'),'mail_from_name'=>$request->input('from_name')]
-        );
+        
+        $fromAddr= '"'.$request->input('from_address').'"';
+        $this->setEnv('MAIL_MAILER',$request->input('mailer'));
+        $this->setEnv('MAIL_HOST',$request->input('host'));
+        $this->setEnv('MAIL_PORT',$request->input('port'));
+        $this->setEnv('MAIL_USERNAME',$request->input('username'));
+        $this->setEnv('MAIL_PASSWORD',$request->input('password'));
+        $this->setEnv('MAIL_ENCRYPTION',$request->input('encryption'));
+        // $this->setEnv('MAIL_FROM_ADDRESS',$fromAddr);
+        // $this->setEnv('MAIL_FROM_NAME',$mailer->mail_from_name);
+
         return to_route('settings.show')->with('success','Email Setting Update Successfully.');
     }
+
 }
