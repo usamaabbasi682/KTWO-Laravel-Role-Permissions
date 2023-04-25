@@ -30,7 +30,7 @@ class ModelPermitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|max:50|unique:model_permits,model_name',
             'description' => 'required|max:100'
         ]);
 
@@ -63,7 +63,7 @@ class ModelPermitController extends Controller
     public function update(Request $request, ModelPermit $model)
     {
         $request->validate([
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|max:50|unique:model_permits,model_name,'.$model->id,
             'description' => 'required|max:100'
         ]);
 

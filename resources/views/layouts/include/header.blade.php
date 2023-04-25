@@ -44,7 +44,7 @@
 				<a class="nav-link {{ request()->is('permissions') ? 'active' : '' }}" href="{{ route('permissions.index') }}">Permissions</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link" data-bs-toggle="tab" href="#kt_header_navs_tab_5">Help</a>
+				<a class="nav-link {{ request()->is('models') ? 'active' : '' }}" href="{{ route('models.index') }}">Models</a>
 			  </li>
 			</ul>
 			<!--begin::Header tabs-->
@@ -419,22 +419,6 @@
 			  </div>
 			  <div class="d-flex flex-column flex-lg-row gap-2">
 				<a class="btn btn-sm btn-light-info fw-bold" href="../../demo20/dist/apps/subscriptions/view.html">More Apps</a>
-			  </div>
-			</div>
-			<!--end::Wrapper-->
-		  </div>
-		  <!--end::Tab panel-->
-		  <!--begin::Tab panel-->
-		  <div class="tab-pane fade" id="kt_header_navs_tab_5">
-			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-lg-row flex-lg-stack flex-wrap gap-2 px-4 px-lg-0">
-			  <div class="d-flex flex-column flex-lg-row gap-2">
-				<a class="btn btn-sm btn-light-primary fw-bold" href="https://preview.keenthemes.com/html/metronic/docs">Documentation</a>
-				<a class="btn btn-sm btn-light-success fw-bold" href="../../demo20/dist/documentation/getting-started/video-tutorials.html">Video Tutorials</a>
-				<a class="btn btn-sm btn-light-danger fw-bold" href="https://preview.keenthemes.com/metronic8/demo20/layout-builder.html">Layout Builder</a>
-			  </div>
-			  <div class="d-flex flex-column flex-lg-row gap-2">
-				<a class="btn btn-sm btn-light-info fw-bold" href="../../demo20/dist/documentation/getting-started/changelog.html">Changelog</a>
 			  </div>
 			</div>
 			<!--end::Wrapper-->

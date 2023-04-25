@@ -67,7 +67,7 @@
                             </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" value="{{ old('name') }}" name="name" autofocus placeholder="Enter Model" />
+                            <input type="text" id="modelName" class="form-control form-control-solid" value="{{ old('name') }}" name="name" autofocus placeholder="Enter Model" />
                             @error('name')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
