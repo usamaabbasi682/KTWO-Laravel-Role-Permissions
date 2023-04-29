@@ -69,7 +69,7 @@
                             </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" value="{{ $model->model_name ?? old('name') }}" name="name" placeholder="Enter Model" />
+                            <input type="text" id="modelName" class="form-control form-control-solid" value="{{ $model->model_name ?? old('name') }}" name="name" placeholder="Enter Model" />
                             @error('name')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
@@ -100,9 +100,6 @@
                         <!--end::Separator-->
                         <!--begin::Action buttons-->
                         <div class="d-flex justify-content-end">
-                            <!--begin::Button-->
-                            <button type="reset" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</button>
-                            <!--end::Button-->
                             <!--begin::Button-->
                             <button type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
                                 <span class="indicator-label">Save</span>

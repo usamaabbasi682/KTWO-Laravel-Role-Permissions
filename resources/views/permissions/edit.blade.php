@@ -95,7 +95,7 @@
                             </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" value="{{ $permission->name ?? old('permission') }}" name="permission" placeholder="Enter Permission" />
+                            <input type="text" id="permission_field" class="form-control form-control-solid" value="{{ $permission->name ?? old('permission') }}" name="permission" placeholder="Enter Permission" />
                             @error('permission')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>

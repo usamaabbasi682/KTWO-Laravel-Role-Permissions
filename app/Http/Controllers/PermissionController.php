@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
+use App\Models\ModelPermit;
 
 class PermissionController extends Controller
 {
@@ -29,12 +30,18 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-
+        $models = ModelPermit::pluck('model_name')->toArray();
         $request->validate([
-            'permission'=>['required','unique:permissions,name',function($attribute,$val,$fail) {
+            'permission'=>['required','unique:permissions,name',function($attribute,$val,$fail) use($models) {
                 $explode = explode('-',$val);
                 if (reset($explode) != 'create' && reset($explode) != 'update' &&  reset($explode) != 'delete' &&  reset($explode) != 'view') {
                     $fail('The first word should be one of the allowed words(create,update,delete,view)');
+                }
+
+                $explode_null = array(null);
+                $input_data_array = array_diff($explode, $explode_null);
+                if(!in_array(end($input_data_array),$models)) {
+                    $fail('Model does not exist, Please create the model and then you are able to create permission for them');
                 }
             }]
         ]);
@@ -63,7 +70,21 @@ class PermissionController extends Controller
      */
     public function update(Request $request, Permission $permission)
     {
-        $request->validate(['permission'=>'required|unique:permissions,name,'.$permission->id]);
+        $models = ModelPermit::pluck('model_name')->toArray();
+        $request->validate([
+            'permission'=>['required','unique:permissions,name,'.$permission->id,function($attribute,$val,$fail) use($models) {
+                $explode = explode('-',$val);
+                if (reset($explode) != 'create' && reset($explode) != 'update' &&  reset($explode) != 'delete' &&  reset($explode) != 'view') {
+                    $fail('The first word should be one of the allowed words(create,update,delete,view)');
+                }
+
+                $explode_null = array(null);
+                $input_data_array = array_diff($explode, $explode_null);
+                if(!in_array(end($input_data_array),$models)) {
+                    $fail('Model does not exist, Please create the model and then you are able to create permission for them');
+                }
+            }]
+        ]);
         $permission->update(['name' => $request->input('permission')]);
         return to_route('permissions.index')->with('success','Permission has been successfully Updated.');
     }

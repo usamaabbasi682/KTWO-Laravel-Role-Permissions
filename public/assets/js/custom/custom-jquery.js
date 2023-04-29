@@ -111,4 +111,25 @@ $(document).ready(function () {
         $(this).val($(this).val().replace(/_/g,'-'));  
     });
 
+    $('#modelName').keyup(function(){
+        $va=$(this).val($(this).val().toLowerCase());    
+        $(this).val($(this).val().replace(/ /g,'-'));  
+        $(this).val($(this).val().replace(/_/g,'-'));  
+    });
+
+    // $('#permission_field').on('keyup', function(event) {
+    //     var words = $(this).val().split('-');
+    //     if (words.length === 3 && event.keyCode !== 8) {
+    //       event.preventDefault();
+    //     }
+    // });
+
+    $('#permission_field').on('input', function(event) {
+        var words = $(this).val().split('-');
+        if (words.length > 3) {
+          $(this).val(words.slice(0,3).join('-'));
+        } else if (words.length === 3) {
+          $(this).val(words.join(''));
+        }
+    });
 });
