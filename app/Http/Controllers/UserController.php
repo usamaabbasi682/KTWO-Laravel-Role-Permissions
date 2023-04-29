@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\{UserAddRequest,UserEditRequest};
 use App\Repositories\UserRepository;
 use App\Models\User;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
 
     public function __construct(protected UserRepository $userRepository) {
         $this->userRepository = $userRepository;
+        $this->authorizeResource(User::class, 'user');
     }
     /**
      * Display a listing of the resource.
@@ -84,9 +87,16 @@ class UserController extends Controller
     }
 
     public function destroyCheckUser(Request $request) {
-        $user=User::destroy($request->input('user_ids'));
-        if ($user) {
-            return true;
+        $user = Auth::user();
+        if ((Permission::where('name','delete-user')->exists() && $user->hasPermissionTo('delete-user')) || $user->hasRole('admin')) 
+        {
+            $user=User::destroy($request->input('user_ids'));
+            if ($user) {
+                return true;
+            }
+        } else { 
+            return false;
         }
+
     }
 }
