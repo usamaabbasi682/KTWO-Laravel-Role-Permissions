@@ -33,9 +33,9 @@ class ModelPermitController extends Controller
             'name' => 'required|string|max:50|unique:model_permits,model_name',
             'description' => 'required|max:100'
         ]);
-
+        $name = $request->input('name');
         ModelPermit::create([
-            'model_name' => $request->input('name'),
+            'model_name' => trim($name),
             'desc' => $request->input('description'),
         ]);
         return to_route('models.index')->with('success','Model has been successfully Created');
@@ -67,8 +67,9 @@ class ModelPermitController extends Controller
             'description' => 'required|max:100'
         ]);
 
+        $name = $request->input('name');
         $model->update([
-            'model_name' => $request->input('name'),
+            'model_name' => trim($name),
             'desc' => $request->input('description'),
         ]);
 

@@ -85,25 +85,56 @@
                             <!--end::Wrapper-->
                         </div>
                         <!--end::Notice-->
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <!--begin::Label-->
-                            <label class="fs-6 fw-semibold form-label mt-3">
-                                <span class="required">Permission Name</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-html="true" data-bs-content="Permission name is required to be unique."></i>
-                                {{-- <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Enter the contact's name."></i> --}}
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" id="permission_field" class="form-control form-control-solid" value="{{ $permission->name ?? old('permission') }}" name="permission" placeholder="Enter Permission" />
-                            @error('permission')
-                                <span class="text-danger">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <!--end::Input-->
+                        <div class="row">
+                            @php
+                                $permissionExplode = explode('-',$permission->name);
+                            @endphp
+                            <div class="col-md-6">
+                                <div class="mb-10">
+                                    <!--begin::Label-->
+                                    <label class="form-label fw-bold fs-6 text-gray-700">Select Permission Types</label>
+                                    <!--end::Label-->
+                                    <!--begin::Select-->
+                                    <input type="hidden" name="permission">
+                                    <select name="type" aria-label="Select a Timezone" data-control="select2" data-placeholder="Types" class="form-select form-select-solid">
+                                        <option value=""></option>
+                                        @forelse ($permissionTypes as $pt)
+                                            <option data-kt-flag="flags/united-states.svg" value="{{ $pt ?? '' }}" @selected(reset($permissionExplode) == $pt)>{{ Str::ucfirst($pt) ?? '' }}</option>
+                                        @empty
+                                            
+                                        @endforelse
+                                    </select>
+                                    @error('type')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                    <!--end::Select-->
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-10">
+                                    <!--begin::Label-->
+                                    <label class="form-label fw-bold fs-6 text-gray-700">Select Model</label>
+                                    <!--end::Label-->
+                                    <!--begin::Select-->
+                                    <select name="model" aria-label="Select a Timezone" data-control="select2" data-placeholder="Models" class="form-select form-select-solid">
+                                        <option value=""></option>
+                                        @forelse ($models as $model)
+                                            <option data-kt-flag="flags/united-states.svg" value="{{ $model ?? '' }}" @selected(end($permissionExplode) == $model)>{{ Str::ucfirst($model) ?? '' }}</option>
+                                        @empty
+                                            
+                                        @endforelse
+                                    </select>
+                                    @error('model')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                    <!--end::Select-->
+                                </div>
+                            </div>
                         </div>
-                        <!--end::Input group-->
 
                         <div class='separator my-5'></div>
                         <!--begin::Separator-->
