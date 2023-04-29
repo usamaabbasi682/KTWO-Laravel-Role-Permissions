@@ -105,31 +105,55 @@ $(document).ready(function () {
     // End
 
     // Convert each letter into lower case in laravel permissions
-    $('#permission_field').keyup(function(){
-        $va=$(this).val($(this).val().toLowerCase());    
-        $(this).val($(this).val().replace(/ /g,'-'));  
-        $(this).val($(this).val().replace(/_/g,'-'));  
-    });
+    // $('#permission_field').keyup(function(){
+    //     $va=$(this).val($(this).val().toLowerCase());    
+    //     $(this).val($(this).val().replace(/ /g,'-'));  
+    //     $(this).val($(this).val().replace(/_/g,'-'));  
+    // });
 
-    $('#modelName').keyup(function(){
-        $va=$(this).val($(this).val().toLowerCase());    
-        $(this).val($(this).val().replace(/ /g,'-'));  
-        $(this).val($(this).val().replace(/_/g,'-'));  
-    });
-
-    // $('#permission_field').on('keyup', function(event) {
+    // $('#permission_field').on('input', function(event) {
     //     var words = $(this).val().split('-');
-    //     if (words.length === 3 && event.keyCode !== 8) {
+    //     if (words.length > 3) {
+    //       $(this).val(words.slice(0,3).join('-'));
+    //     } else if (words.length === 3) {
+    //       $(this).val(words.join('')); 
+    //     }
+    // });
+
+    // $('#modelName').on('keyup', function(event) {
+    //     var words = $(this).val().split('-');
+    //     if (words.length === 1 && event.keyCode !== 8) {
     //       event.preventDefault();
     //     }
     // });
 
-    $('#permission_field').on('input', function(event) {
-        var words = $(this).val().split('-');
-        if (words.length > 3) {
-          $(this).val(words.slice(0,3).join('-'));
-        } else if (words.length === 3) {
-          $(this).val(words.join(''));
+    $('#modelName').keyup(function(){
+        $va=$(this).val($(this).val().toLowerCase());
+    });
+
+    $('#modelName').mouseleave(function () { 
+        $(this).blur();
+        var inputVal = $(this).val();
+        var singularWord = pluralize.singular(inputVal);
+        $(this).val(singularWord);
+    });
+
+    $('#modelName').on('keypress', function(event) {
+        // Get the current value of the input field
+        var value = $(this).val();
+        // Count the number of spaces in the input
+        var numSpaces = value.split(' ').length - 1;
+        // If there is already one space in the input, prevent further input
+        if (numSpaces >= 1 && event.keyCode !== 8) {
+          event.preventDefault();
         }
     });
+
+      $('#modelName').on('keydown', function(event) {
+        // If the spacebar key is pressed, prevent default behavior
+        if (event.keyCode === 32) {
+          event.preventDefault();
+        }
+      });
+    
 });

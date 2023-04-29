@@ -30,7 +30,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['role'=>'required']);
+        $request->validate(['role'=>'required|unique:roles,name']);
         $role = Role::create(['name' => $request->input('role')]);
         return to_route('roles.index')->with('success','Role has been successfully Created');
     }
@@ -59,7 +59,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        $request->validate(['role'=>'required']);
+        $request->validate(['role'=>'required|unique:roles,name,'.$role->id]);
         $role->update(['name' => $request->input('role')]);
         return to_route('roles.index')->with('success','Role has been successfully Updated.');
     }

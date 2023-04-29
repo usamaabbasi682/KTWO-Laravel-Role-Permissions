@@ -25,4 +25,5 @@
 <script src="{{ asset('assets/js/custom/custom-jquery.js') }}"></script>
 <script src={{ asset('assets/js/custom/jquery-search.js') }}></script>
 <script src="{{ asset('assets/js/custom/validation.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pluralize/8.0.0/pluralize.min.js"></script>
 <!--end::Custom Javascript-->
