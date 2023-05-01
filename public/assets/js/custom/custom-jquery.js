@@ -25,6 +25,8 @@ $(document).ready(function () {
                     if (response) {
                         alert('Users deleted successfully.');
                         location.reload();
+                    } else {
+                        alert('This action is unauthorized.');
                     }
                 }
             });  

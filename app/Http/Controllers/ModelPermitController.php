@@ -7,6 +7,11 @@ use App\Models\ModelPermit;
 
 class ModelPermitController extends Controller
 {
+
+    public function __construct() {
+        $this->authorizeResource(ModelPermit::class, 'modelPermit');
+    }
+
     /**
      * Display a listing of the resource.
      */

@@ -8,11 +8,16 @@ use App\Models\ModelPermit;
 
 class PermissionController extends Controller
 {
+
+    public function __construct() {
+        $this->authorizeResource(Permission::class, 'permission');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
+    { 
         $permissions = Permission::latest()->get();
         return view('permissions.index',compact('permissions')); 
     }
@@ -86,23 +91,6 @@ class PermissionController extends Controller
             }],
             'model' => 'required',
         ]);
-
-        // $models = ModelPermit::pluck('model_name')->toArray();
-        // $request->validate([
-        //     'permission'=>['required','unique:permissions,name,'.$permission->id,function($attribute,$val,$fail) use($models) {
-        //         $explode = explode('-',$val);
-        //         if (reset($explode) != 'create' && reset($explode) != 'update' &&  reset($explode) != 'delete' &&  reset($explode) != 'view') {
-        //             $fail('The first word should be one of the allowed words(create,update,delete,view)');
-        //         }
-
-        //         $explode_null = array(null);
-        //         $input_data_array = array_diff($explode, $explode_null);
-        //         if(!in_array(end($input_data_array),$models)) {
-        //             $fail('Model does not exist, Please create the model and then you are able to create permission for them');
-        //         }
-        //     }]
-        // ]);
-
         $permission->update(['name' =>$permissionInput]);
         return to_route('permissions.index')->with('success','Permission has been successfully Updated.');
     }
