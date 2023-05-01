@@ -154,9 +154,6 @@
                         <!--begin::Action buttons-->
                         <div class="d-flex justify-content-end">
                             <!--begin::Button-->
-                            <button type="reset" data-kt-contacts-type="cancel" class="btn btn-light me-3">Cancel</button>
-                            <!--end::Button-->
-                            <!--begin::Button-->
                             <button @disabled($permissions->count() == 0) type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
                                 <span class="indicator-label">Save</span>
                             </button>
