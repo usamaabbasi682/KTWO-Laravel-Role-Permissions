@@ -3,10 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,16 +16,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'user']);
+        // Seeder Calling 
+        $this->call([
+            PermissionSeeder::class,
+        ]);
+
+        // Creating Roles
+        $adminRole=Role::create(['name' => 'admin']);
+        $userRole=Role::create(['name' => 'user']);
         
-        $user = User::create([
+        // Create Admin
+        $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@test.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
         ]);
-        $user->assignRole(['name' => 'admin']);
+        $admin->assignRole(['name' => 'admin']);
+        // Giving All Permission to admin
+        foreach (Permission::pluck('name') as $permission) {
+            $adminRole->givePermissionTo($permission);
+        }
 
+
+        // Create Default User
+        $user = User::create([
+            'name' => 'Usama Abbasi',
+            'email' => 'usamaabbasi682@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('12345678'),
+        ]);
+        $user->assignRole(['name' => 'user']);
+
+        // User Factory
         User::factory(20)->create()->each(function($user){
             $user->assignRole('user');
         });

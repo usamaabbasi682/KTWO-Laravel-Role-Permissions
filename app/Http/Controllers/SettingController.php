@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Auth,App};
 use App\Models\{Setting};
 use App\Http\Requests\Setting\MailerRequest;
+use Spatie\Permission\Models\Permission;
 
 class SettingController extends Controller
 {
@@ -64,6 +65,10 @@ class SettingController extends Controller
      */
     public function update(Request $request)
     {
+        if ((Permission::where('name','update-setting')->doesntExist() || !Auth::user()->hasPermissionTo('update-setting')) && !Auth::user()->hasRole('admin')) {
+            abort(403,'This action is unauthorized.');
+        } 
+
         $validation=$request->validate([
             'app_name' => 'required|max:10|string',
             'app_url' => 'required|url',
@@ -117,7 +122,11 @@ class SettingController extends Controller
         abort(404);
     }
 
-    public function update_mailer(MailerRequest $request) {
+    public function update_mailer(MailerRequest $request) 
+    {
+        if ((Permission::where('name','update-setting')->doesntExist() || !Auth::user()->hasPermissionTo('update-setting')) && !Auth::user()->hasRole('admin')) {
+            abort(403,'This action is unauthorized.');
+        } 
         $request->validated();
         
         $fromAddr= '"'.$request->input('from_address').'"';
