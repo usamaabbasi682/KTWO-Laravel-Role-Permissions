@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ModelPermit;
+use Illuminate\Support\Facades\Gate;
 
 class ModelPermitController extends Controller
 {
-
-    public function __construct() {
-        $this->authorizeResource(ModelPermit::class, 'modelPermit');
-    }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        Gate::authorize('viewAny','App\\Models\ModelPermit');
+
         $models = ModelPermit::latest()->get();
         return view('models_permits.index',compact('models'));
     }
@@ -26,6 +24,8 @@ class ModelPermitController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create','App\\Models\ModelPermit');
+
         return view('models_permits.create');
     }
 
@@ -59,6 +59,7 @@ class ModelPermitController extends Controller
      */
     public function edit(ModelPermit $model)
     {
+        Gate::authorize('update',$model);
         return view('models_permits.edit',compact('model'));
     }
 
@@ -86,6 +87,7 @@ class ModelPermitController extends Controller
      */
     public function destroy(ModelPermit $model)
     {
+        Gate::authorize('delete',$model);
         $model->delete();
         return to_route('models.index')->with('error','Model deleted successfully.');
     }

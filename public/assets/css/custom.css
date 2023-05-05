@@ -6,3 +6,9 @@
 .b_none {
     border: 0px;
 }
+
+.header_image {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

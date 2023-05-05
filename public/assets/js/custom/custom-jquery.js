@@ -151,10 +151,24 @@ $(document).ready(function () {
         }
     });
 
-      $('#modelName').on('keydown', function(event) {
+    $('#modelName').on('keydown', function(event) {
         // If the spacebar key is pressed, prevent default behavior
         if (event.keyCode === 32) {
-          event.preventDefault();
+            event.preventDefault();
         }
-      });
+    });
+
+    $('#appName,#appUrl').on('keydown', function(event) {
+        if (event.keyCode === 32) {
+            event.preventDefault();
+        }
+    });
+
+    $('#appName,#appUrl').mouseleave(function () { 
+        $(this).blur();
+    });
+
+    $('#reloadhomePage').click(function() {
+        window.location.reload();
+    });
 });
