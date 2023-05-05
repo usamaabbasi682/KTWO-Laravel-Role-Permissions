@@ -116,7 +116,7 @@
                         </td>
                         <!--end::Assigned to=-->
                         <!--begin::Created Date-->
-                        <td>{{ $permission->created_at->format('d-m-y h:i A') }}</td>
+                        <td> @datetime($permission->created_at) </td>
                         <!--end::Created Date-->
                         <!--begin::Action=-->
                         <td class="text-end">

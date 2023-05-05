@@ -233,7 +233,7 @@
                         </td>
                         <!--end::Two step=-->
                         <!--begin::Joined-->
-                        <td>{{ $user->created_at->format('d-m-y h:i A') }}</td>
+                        <td> @datetime($user->created_at) </td>
                         <!--begin::Joined-->
                         <!--begin::Action=-->
                         <td class="text-end">

@@ -74,7 +74,7 @@
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                     <i class="bi bi-pencil-fill fs-7"></i>
                                     <!--begin::Inputs-->
-                                    <input type="file" name="light_logo" accept=".png, .jpg, .jpeg,.svg" />
+                                    <input type="file" name="light_logo" accept=".png, .jpg, .jpeg,.svg,.ico" />
                                     <input type="hidden" name="light_logo_remove" />
                                     <!--end::Inputs-->
                                 </label>
@@ -111,7 +111,7 @@
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                     <i class="bi bi-pencil-fill fs-7"></i>
                                     <!--begin::Inputs-->
-                                    <input type="file" name="dark_logo" accept=".png, .jpg, .jpeg,.svg" />
+                                    <input type="file" name="dark_logo" accept=".png, .jpg, .jpeg,.svg,.ico" />
                                     <input type="hidden" name="dark_logo_remove" />
                                     <!--end::Inputs-->
                                 </label>
@@ -149,7 +149,7 @@
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                     <i class="bi bi-pencil-fill fs-7"></i>
                                     <!--begin::Inputs-->
-                                    <input type="file" name="favicon_icon" accept=".png, .jpg, .jpeg,.svg" />
+                                    <input type="file" name="favicon_icon" accept=".png, .jpg, .jpeg,.svg,.ico" />
                                     <input type="hidden" name="favicon_icon_remove" />
                                     <!--end::Inputs-->
                                 </label>
