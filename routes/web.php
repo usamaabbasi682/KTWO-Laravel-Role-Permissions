@@ -26,10 +26,11 @@ Route::get('/', function () {
     return to_route('login');
 });
 
-Auth::routes(['verify'=>true]);
+Route::middleware(['checkIsAdmin'])->group(function () {
+    Auth::routes(['verify'=>true]); 
+});
 
-
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified','checkIsAdmin'])->group(function () {
     // Custom Route
     Route::delete('/delete_checked_users',[UserController::class,'destroyCheckUser'])->name('delete_checked_user');
     Route::post('assign-permission/roles/{role}',[RoleController::class,'assignPermissions'])->name('assign-permission.role');

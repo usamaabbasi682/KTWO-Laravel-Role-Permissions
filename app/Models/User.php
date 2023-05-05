@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Carbon\Carbon;
 
 class User extends Authenticatable implements MustVerifyEmail,HasMedia
 {
@@ -26,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
         'email',
         'phone',
         'password',
+        'last_logged_in_at',
         'email_verified_at',
     ];
 
@@ -47,4 +49,9 @@ class User extends Authenticatable implements MustVerifyEmail,HasMedia
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeLoginUsers($query) {
+        return $query->where('last_logged_in_at','<=',Carbon::now())
+        ->where('last_logged_in_at','>=',Carbon::now()->subHour())->orderBy('last_logged_in_at','asc');
+    }
 }

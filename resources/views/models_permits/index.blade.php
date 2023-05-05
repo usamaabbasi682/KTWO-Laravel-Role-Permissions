@@ -112,7 +112,7 @@
                         </td>
                         <!--end::Assigned to=-->
                         <!--begin::Created Date-->
-                        <td>{{ $model->created_at->format('d-m-y h:i A') }}</td>
+                        <td> @datetime($model->created_at) </td>
                         <!--end::Created Date-->
                         <!--begin::Action=-->
                         <td class="text-end">

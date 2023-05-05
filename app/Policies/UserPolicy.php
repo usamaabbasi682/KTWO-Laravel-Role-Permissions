@@ -31,7 +31,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        if ((Permission::where('name','update-user')->exists() && $user->hasPermissionTo('update-user')) || $user->hasRole('admin')) {
+        if ((Permission::where('name','create-user')->exists() && $user->hasPermissionTo('create-user')) || $user->hasRole('admin')) {
             return true;
         } else { return false; }
     }

@@ -22,7 +22,11 @@
 		<!--end::Heaeder navs toggle-->
 		<!--begin::Logo-->
 		<a href="{{ route('home') }}" class="d-flex align-items-center">
-		  <img alt="Logo" src="{{ asset('assets/media/logos/demo20.svg') }}" class="h-25px h-lg-30px" />
+			@isset($lightLogo)
+				<img alt="Logo" src="{{ asset('storage/'.$lightLogo->id.'/'.$lightLogo->file_name) ?? asset('assets/media/logos/demo20.svg') }}" class="h-25px h-lg-30px" />
+			@else   
+				<img alt="Logo" src="{{ asset('assets/media/logos/demo20.svg') }}" class="h-25px h-lg-30px" />
+			@endisset
 		</a>
 		<!--end::Logo-->
 		<!--begin::Tabs wrapper-->
