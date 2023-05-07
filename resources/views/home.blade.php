@@ -107,7 +107,7 @@
       <!--begin::Controls-->
       <div class="d-flex my-2">
          <!--begin::Select-->
-         <a href="#" class="btn btn-light btn-active-info my-1 me-2">Reload Page</a>
+         <a href="javascript:void(0)" id="reloadhomePage" class="btn btn-light btn-active-info my-1 me-2">Reload Page</a>
          <!--end::Select-->
       </div>
       <!--end::Controls-->

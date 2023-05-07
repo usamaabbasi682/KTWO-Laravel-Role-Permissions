@@ -47,9 +47,9 @@ class SettingController extends Controller
     {
         $settings = Setting::first();
         $light_logo=$settings->getFirstMedia('light_logo');
-        $dark_logo=$settings->getFirstMedia('dark_logo');
+        $header_image=$settings->getFirstMedia('header_image');
         $favicon_icon=$settings->getFirstMedia('favicon_icon');
-        return view('settings.index',compact('light_logo','dark_logo','favicon_icon','settings'));
+        return view('settings.index',compact('light_logo','header_image','favicon_icon','settings'));
     }
 
     /**
@@ -84,12 +84,12 @@ class SettingController extends Controller
                 $settings->addMediaFromRequest('light_logo')->toMediaCollection('light_logo');
             }
     
-            if ($request->has('dark_logo')) {
-                $darkLogo = $settings->getFirstMedia('dark_logo');
+            if ($request->has('header_image')) {
+                $darkLogo = $settings->getFirstMedia('header_image');
                 if (!empty($darkLogo)) {
                     $darkLogo->delete();
                 }
-                $settings->addMediaFromRequest('dark_logo')->toMediaCollection('dark_logo');
+                $settings->addMediaFromRequest('header_image')->toMediaCollection('header_image');
             }
     
             if ($request->has('favicon_icon')) {
@@ -120,26 +120,6 @@ class SettingController extends Controller
     public function destroy(): never
     {
         abort(404);
-    }
-
-    public function update_mailer(MailerRequest $request) 
-    {
-        if ((Permission::where('name','update-setting')->doesntExist() || !Auth::user()->hasPermissionTo('update-setting')) && !Auth::user()->hasRole('admin')) {
-            abort(403,'This action is unauthorized.');
-        } 
-        $request->validated();
-        
-        $fromAddr= '"'.$request->input('from_address').'"';
-        $this->setEnv('MAIL_MAILER',$request->input('mailer'));
-        $this->setEnv('MAIL_HOST',$request->input('host'));
-        $this->setEnv('MAIL_PORT',$request->input('port'));
-        $this->setEnv('MAIL_USERNAME',$request->input('username'));
-        $this->setEnv('MAIL_PASSWORD',$request->input('password'));
-        $this->setEnv('MAIL_ENCRYPTION',$request->input('encryption'));
-        // $this->setEnv('MAIL_FROM_ADDRESS',$fromAddr);
-        // $this->setEnv('MAIL_FROM_NAME',$mailer->mail_from_name);
-
-        return to_route('settings.show')->with('success','Email Setting Update Successfully.');
     }
 
 }

@@ -491,22 +491,6 @@
                             <!--begin::Section-->
                             <div class="text-gray-700 fw-semibold fs-6 me-2">{{ Str::ucfirst($permission) ?? '' }}</div>
                             <!--end::Section-->
-                            <!--begin::Statistics-->
-                            <div class="d-flex align-items-senter">
-                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr094.svg-->
-                                <span class="svg-icon svg-icon-2 svg-icon-success me-2">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect opacity="0.5" x="16.9497" y="8.46448" width="13" height="2" rx="1" transform="rotate(135 16.9497 8.46448)" fill="currentColor"></rect>
-                                        <path d="M14.8284 9.97157L14.8284 15.8891C14.8284 16.4749 15.3033 16.9497 15.8891 16.9497C16.4749 16.9497 16.9497 16.4749 16.9497 15.8891L16.9497 8.05025C16.9497 7.49797 16.502 7.05025 15.9497 7.05025L8.11091 7.05025C7.52512 7.05025 7.05025 7.52513 7.05025 8.11091C7.05025 8.6967 7.52512 9.17157 8.11091 9.17157L14.0284 9.17157C14.4703 9.17157 14.8284 9.52975 14.8284 9.97157Z" fill="currentColor"></path>
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                                <!--begin::Number-->
-                                <span class="text-gray-900 fw-bolder fs-6">7.8</span>
-                                <!--end::Number-->
-                                <span class="text-gray-400 fw-bold fs-6">/10</span>
-                            </div>
-                            <!--end::Statistics-->
                         </div>
                         <!--end::Item-->
                         <!--begin::Separator-->
