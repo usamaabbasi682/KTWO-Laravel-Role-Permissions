@@ -5,7 +5,7 @@
 @isset($faviconIcon)
     <link rel="shortcut icon" href="{{ asset('storage/'.$faviconIcon->id.'/'.$faviconIcon->file_name) }}" />
 @else 
-    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon-icon.svg') }}" />
 @endisset
 
 <!--begin::Fonts(mandatory for all pages)-->

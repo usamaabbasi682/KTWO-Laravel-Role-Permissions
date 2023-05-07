@@ -72,6 +72,7 @@ class SettingController extends Controller
         $validation=$request->validate([
             'app_name' => 'required|max:10|string',
             'app_url' => 'required|url',
+            'login_page_heading' => 'nullable|max:150|string'
         ]);
 
         try {
@@ -103,9 +104,17 @@ class SettingController extends Controller
 
             // Updating Data in Table and .env file
             if(env('APP_NAME') != $request->input('app_name') || env('APP_URL') != $request->input('app_url')) {
-                $settings->update($validation);
+                $settings->update([
+                    'app_name' => $request->input('app_name'),
+                    'app_url' => $request->input('app_url'),
+                    'login_page_heading' => $request->input('login_page_heading'),
+                ]);
                 $this->setEnv('APP_NAME', $settings->app_name);
                 $this->setEnv('APP_URL', $request->app_url);
+            }  else {
+                $settings->update([
+                    'login_page_heading' => $request->input('login_page_heading'),
+                ]); 
             }
     
             return to_route('settings.show')->with('success','Setting Update Successfully.');

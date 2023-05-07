@@ -12,7 +12,7 @@
 		@section('common_layout')
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Page bg image-->
-			<style>body { background-image: url({{ asset('assets/media/auth/bg4.jpg') }}); } [data-theme="dark"] body { background-image: url({{ asset('assets/media/auth/bg4-dark.jpg') }}); }</style>
+			<style>body { background-image: url({{ asset('assets/media/auth/bg7.jpg') }}); } [data-theme="dark"] body { background-image: url({{ asset('assets/media/auth/bg4-dark.jpg') }}); }</style>
 			<!--end::Page bg image-->
 			<!--begin::Authentication - Sign-in -->
 			<div class="d-flex flex-column flex-column-fluid flex-lg-row">
@@ -22,11 +22,15 @@
 					<div class="d-flex flex-center flex-lg-start flex-column">
 						<!--begin::Logo-->
 						<a href="#" class="mb-7">
-							<img alt="Logo" src="{{ asset('assets/media/logos/custom-3.svg') }}" />
+							@isset($lightLogo)
+								<img alt="Logo" src="{{ asset('storage/'.$lightLogo->id.'/'.$lightLogo->file_name) ?? asset('assets/media/logos/demo20.svg') }}" class="h-25px h-lg-65px" />
+							@else   
+								<img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="h-25px h-lg-65px" />
+							@endisset
 						</a>
 						<!--end::Logo-->
 						<!--begin::Title-->
-						<h2 class="text-white fw-normal m-0">@yield('heading')</h2>
+						<h2 class="text-white fw-normal m-0">{{ $login_heading ?? ' ' }}</h2>
 						<!--end::Title-->
 					</div>
 					<!--begin::Aside-->

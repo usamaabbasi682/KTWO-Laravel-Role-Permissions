@@ -197,7 +197,7 @@
                                         @isset($image)
                                         <img src="{{ asset('storage/'.$image->id.'/'.$image->file_name) ?? '' }}" class="w-100" alt="image" />
                                         @else 
-                                        <img src="{{ asset('assets/media/svg/files/blank-image.svg') }}" alt="Emma Smith" class="w-100" />
+                                        <img src="{{ asset('assets/media/avatars/usernew.png') }}" alt="Emma Smith" class="w-100" />
                                         @endisset
                                     </div> 
                                 </a>

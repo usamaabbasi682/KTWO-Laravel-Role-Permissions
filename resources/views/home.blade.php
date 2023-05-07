@@ -132,7 +132,7 @@
                         <img src="{{ asset('storage/'.$image->id.'/'.$image->file_name) ?? '' }}" alt="image" class="p-3" />
                         {{-- <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3"></div> --}}
                      @else 
-                        <img src="{{ asset('assets/media/svg/avatars/blank.svg') }}" alt="image" class="p-3" />
+                        <img src="{{ asset('assets/media/avatars/user.svg') }}" alt="image" class="p-3" />
                         {{-- <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3"></div> --}}
                      @endisset
                   </div>

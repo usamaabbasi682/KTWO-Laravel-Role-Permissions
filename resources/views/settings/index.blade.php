@@ -104,7 +104,7 @@
                                 @isset($header_image)
                                     <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('storage/'.$header_image->id.'/'.$header_image->file_name) ?? '' }})"></div>
                                 @else 
-                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('assets/media/logos/default-logo.png') }})"></div>
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('assets/media/logos/white-image.png') }})"></div>
                                 @endisset
                                 <!--end::Preview existing avatar-->
                                 <!--begin::Label-->
@@ -211,6 +211,26 @@
                         <div class="col-lg-8 fv-row">
                             <input type="text" id="appUrl" name="app_url" class="form-control form-control-lg form-control-solid" placeholder="Enter App Url" value="{{ $settings->app_url ?? env('APP_URL') }}" />
                             @error('app_url')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                                        <!--begin::Input group-->
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                            <span>Auth Page Heading</span>
+                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Please enter Login Page Heading."></i>
+                        </label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" id="login_page" name="login_page_heading" class="form-control form-control-lg form-control-solid" placeholder="Enter Heading" value="{{ $settings->login_page_heading ?? '' }}" />
+                            @error('login_page_heading')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
                                 </span>

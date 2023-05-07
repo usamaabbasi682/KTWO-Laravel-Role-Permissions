@@ -114,7 +114,7 @@
                     <!--begin::Button-->
                     <a href="{{ route('roles.create') }}" class="btn btn-clear d-flex flex-column flex-center">
                         <!--begin::Illustration-->
-                        <img src="{{ asset('assets/media/illustrations/sketchy-1/4.png') }}" alt="" class="mw-100 mh-150px mb-7" />
+                        <img src="{{ asset('assets/media/auth/4.png') }}" alt="" class="mw-100 mh-150px mb-7" />
                         <!--end::Illustration-->
                         <!--begin::Label-->
                         <div class="fw-bold fs-3 text-gray-600 text-hover-primary">Add New Role</div>
