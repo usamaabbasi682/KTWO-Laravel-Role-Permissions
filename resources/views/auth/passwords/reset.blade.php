@@ -4,7 +4,6 @@
 {{-- This will hide forgot layout --}}
 @section('forgot_layout') @endsection
 @section('title','Reset Password | KTWO')
-@section('heading','Branding tools designed for your business')
 @section('content')
 <form class="form w-100" id="setup_new_password" method="POST" action="{{ route('password.update') }}">
     {{ csrf_field() }}

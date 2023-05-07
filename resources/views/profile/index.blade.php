@@ -49,7 +49,7 @@
                         @isset($image)
                             <img src="{{ asset('storage/'.$image->id.'/'.$image->file_name) ?? '' }}" alt="image" />
                         @else 
-                            <img src="{{ asset('assets/media/svg/avatars/blank.svg') }}" alt="image" />
+                            <img src="{{ asset('assets/media/avatars/blank.svg') }}" alt="image" />
                         @endisset
                         
                         <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
@@ -171,7 +171,7 @@
                                 @isset($image)
                                     <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('storage/'.$image->id.'/'.$image->file_name) ?? '' }})"></div>
                                 @else 
-                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('assets/media/svg/avatars/blank.svg') }})"></div>
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('assets/media/avatars/user.svg') }})"></div>
                                 @endisset
                                 <!--end::Preview existing avatar-->
                                 <!--begin::Label-->

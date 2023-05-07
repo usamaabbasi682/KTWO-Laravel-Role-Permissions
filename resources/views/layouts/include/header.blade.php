@@ -34,7 +34,7 @@
 			@isset($lightLogo)
 				<img alt="Logo" src="{{ asset('storage/'.$lightLogo->id.'/'.$lightLogo->file_name) ?? asset('assets/media/logos/demo20.svg') }}" class="h-25px h-lg-30px" />
 			@else   
-				<img alt="Logo" src="{{ asset('assets/media/logos/demo20.svg') }}" class="h-25px h-lg-30px" />
+				<img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="h-25px h-lg-30px" />
 			@endisset
 		</a>
 		<!--end::Logo-->
@@ -45,19 +45,19 @@
 			<!--begin::Header tabs-->
 			<ul class="nav flex-nowrap text-nowrap">
 			  <li class="nav-item">
-				<a class="nav-link {{ request()->is('home') ? 'active' : '' }}"  href="{{ route('home') }}">Dashboard</a>
+				<a class="nav-link {{ (request()->is('home') || request()->routeIs('home')) ? 'active' : '' }}"  href="{{ route('home') }}">Dashboard</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link {{ request()->is('users') ? 'active' : '' }}" href="{{ route('users.index') }}">Users</a>
+				<a class="nav-link {{ (request()->routeIs('users.index') || request()->routeIs('users.create') || request()->routeIs('users.edit')) ? 'active' : '' }}" href="{{ route('users.index') }}">Users</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link {{ request()->is('roles') ? 'active' : '' }}" href="{{ route('roles.index') }}">Roles</a>
+				<a class="nav-link {{ (request()->routeIs('roles.index') || request()->routeIs('roles.create') || request()->routeIs('roles.edit') || request()->routeIs('roles.show')) ? 'active' : '' }}" href="{{ route('roles.index') }}">Roles</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link {{ request()->is('permissions') ? 'active' : '' }}" href="{{ route('permissions.index') }}">Permissions</a>
+				<a class="nav-link {{ (request()->routeIs('permissions.index') || request()->routeIs('permissions.create') || request()->routeIs('permissions.edit')) ? 'active' : '' }}" href="{{ route('permissions.index') }}">Permissions</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link {{ request()->is('models') ? 'active' : '' }}" href="{{ route('models.index') }}">Models</a>
+				<a class="nav-link {{ (request()->routeIs('models.index') || request()->routeIs('models.create') || request()->routeIs('models.edit')) ? 'active' : '' }}" href="{{ route('models.index') }}">Models</a>
 			  </li>
 			</ul>
 			<!--begin::Header tabs-->
@@ -266,7 +266,7 @@
 				@isset($image)
 					<img src="{{ asset('storage/'.$image->id.'/'.$image->file_name) ?? '' }}" alt="image" />
 				@else 
-					<img src="{{ asset('assets/media/svg/avatars/blank.svg') }}" alt="image" />
+					<img src="{{ asset('assets/media/avatars/blank.svg') }}" alt="image" />
 				@endisset
 			</div>
 			<!--end::Symbol-->
@@ -284,8 +284,8 @@
 					@endphp
 					@isset($image)
 						<img src="{{ asset('storage/'.$image->id.'/'.$image->file_name) ?? '' }}" alt="image" />
-					@else 
-						<img src="{{ asset('assets/media/svg/avatars/blank.svg') }}" alt="image" />
+					@else  
+						<img src="{{ asset('assets/media/avatars/blank.svg') }}" alt="image" />
 					@endisset
 				</div>
 				<!--end::Avatar-->

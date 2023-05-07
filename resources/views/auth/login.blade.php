@@ -4,7 +4,6 @@
 {{-- This will hide forgot layout --}}
 @section('forgot_layout') @endsection
 @section('title','Login | KTWO')
-@section('heading','Branding tools designed for your business')
 @section('content')
 <form class="form w-100" id="login_form" action="{{ route('login') }}" method="POST">
     {{ csrf_field() }}
@@ -14,25 +13,13 @@
         <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
         <!--end::Title-->
         <!--begin::Subtitle-->
-        <div class="text-gray-500 fw-semibold fs-6">Your Social Campaigns</div>
+        <div class="text-gray-500 fw-semibold fs-6">Your Personal Account</div>
         <!--end::Subtitle=-->
     </div>
     <!--begin::Heading-->
-    <!--begin::Login options-->
-    <div class="row g-3 mb-9">
-        <!--begin::Col-->
-        <div class="col-md-12">
-            <!--begin::Google link=-->
-            <a href="#" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
-            <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg" class="h-15px me-3" />Sign in with Google</a>
-            <!--end::Google link=-->
-        </div>
-        <!--end::Col-->
-    </div>
-    <!--end::Login options-->
     <!--begin::Separator-->
     <div class="separator separator-content my-14">
-        <span class="w-125px text-gray-500 fw-semibold fs-7">Or with email</span>
+        <span class="w-125px text-gray-500 fw-semibold fs-7">Your Details</span>
     </div>
     <!--end::Separator-->
     <!--begin::Input group=-->

@@ -16,5 +16,6 @@ class Setting extends Model implements HasMedia
     protected $fillable = [
         'app_name',
         'app_url',
+        'login_page_heading',
     ];
 }

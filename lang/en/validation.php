@@ -182,6 +182,7 @@ return [
     'attributes' => [
         'fname' => 'first name',
         'lname' => 'last name',
+        'login_page_heading' => 'page heading',
     ],
 
 ];

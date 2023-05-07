@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('lightLogo',$lightLogo);
         view()->share('faviconIcon',$faviconIcon);
         view()->share('header_image',$header_image);
+        view()->share('login_heading',$setting->login_page_heading);
 
         Blade::directive('datetime', function(string $expression) {
             return "<?php echo ($expression)->format('d-m-y h:i A'); ?>";
