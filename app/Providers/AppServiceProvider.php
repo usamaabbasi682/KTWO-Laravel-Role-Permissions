@@ -26,10 +26,12 @@ class AppServiceProvider extends ServiceProvider
         $lightLogo=$setting->getFirstMedia('light_logo');
         $faviconIcon = $setting->getFirstMedia('favicon_icon');
         $header_image = $setting->getFirstMedia('header_image');
+        $loginPageBgMedia=$setting->getFirstMedia('auth_selected_media');
         view()->share('lightLogo',$lightLogo);
         view()->share('faviconIcon',$faviconIcon);
         view()->share('header_image',$header_image);
         view()->share('login_heading',$setting->login_page_heading);
+        view()->share('login_page_bg_media',$loginPageBgMedia);
 
         Blade::directive('datetime', function(string $expression) {
             return "<?php echo ($expression)->format('d-m-y h:i A'); ?>";

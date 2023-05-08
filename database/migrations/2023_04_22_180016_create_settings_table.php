@@ -22,10 +22,24 @@ return new class extends Migration
         
         if (Schema::hasTable('settings')) 
         {
+            $mediaItems = [];
             Setting::create([
                 'app_name' => env('APP_NAME'),
                 'app_url' => env('APP_URL'),
-            ]);   
+            ]);  
+             
+            $settings = Setting::firstOrFail();
+            $filePaths = [
+                '/app/auth/bg1.jpg', '/app/auth/bg1-dark.jpg', '/app/auth/bg2.jpg', '/app/auth/bg2-dark.jpg',
+                '/app/auth/bg3.jpg', '/app/auth/bg3-dark.jpg', '/app/auth/bg4.jpg', '/app/auth/bg4-dark.jpg',
+                '/app/auth/bg5.jpg', '/app/auth/bg5-dark.jpg', '/app/auth/bg6.jpg', '/app/auth/bg6-dark.jpg',
+                '/app/auth/bg7.jpg', '/app/auth/bg7-dark.jpg', '/app/auth/bg8.jpg', '/app/auth/bg8-dark.jpg',
+                '/app/auth/bg9.jpg', '/app/auth/bg9-dark.jpg', '/app/auth/bg10.jpeg', '/app/auth/bg10-dark.jpeg',
+            ];
+    
+            foreach($filePaths as $filePath) {
+                $mediaItems=$settings->addMedia(storage_path($filePath))->preservingOriginal()->toMediaCollection('auth_page_media');
+            }
         }
     }
 

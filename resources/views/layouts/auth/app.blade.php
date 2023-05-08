@@ -12,7 +12,12 @@
 		@section('common_layout')
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Page bg image-->
-			<style>body { background-image: url({{ asset('assets/media/auth/bg7.jpg') }}); } [data-theme="dark"] body { background-image: url({{ asset('assets/media/auth/bg4-dark.jpg') }}); }</style>
+			@isset($login_page_bg_media)
+				@php $pageMedia=asset('storage/'.$login_page_bg_media->id.'/'.$login_page_bg_media->file_name); @endphp
+			@else    
+				@php $pageMedia=asset('assets/media/auth/bg4.jpg') @endphp
+			@endisset
+			<style>body { background-image: url({{ $pageMedia ?? '' }}); } [data-theme="dark"] body { background-image: url({{ asset('assets/media/auth/bg4-dark.jpg') }}); }</style>
 			<!--end::Page bg image-->
 			<!--begin::Authentication - Sign-in -->
 			<div class="d-flex flex-column flex-column-fluid flex-lg-row">
