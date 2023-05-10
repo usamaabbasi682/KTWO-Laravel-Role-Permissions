@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Auth\Events\Registered;
+use App\Traits\SettingTrait;
 
 class RegisterController extends Controller
 {
@@ -24,7 +25,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers, SettingTrait;
 
     /**
      * Where to redirect users after registration.
@@ -40,7 +41,11 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        if ($this->checkRegistrationPermission()) {
+            $this->middleware('guest');
+        } else {
+            $this->middleware('isRegistrationAllow');
+        }
     }
 
     /**

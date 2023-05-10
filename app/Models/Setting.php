@@ -17,5 +17,13 @@ class Setting extends Model implements HasMedia
         'app_name',
         'app_url',
         'login_page_heading',
+        'allow_registration',
+        'allow_forgot_pwd',
     ];
+
+    protected $casts = [
+        'allow_registration' => 'boolean',
+        'allow_forgot_pwd' => 'boolean',
+    ];
+    
 }

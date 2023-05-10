@@ -101,6 +101,12 @@ class SettingController extends Controller
                 $settings->addMediaFromRequest('favicon_icon')->toMediaCollection('favicon_icon');
             }
 
+            if ($request->has('allow_reg')) {
+                $allowReg = $request->input('allow_reg');
+            } else {
+                $allowReg = false;
+            }
+
 
             // Updating Data in Table and .env file
             if(env('APP_NAME') != $request->input('app_name') || env('APP_URL') != $request->input('app_url')) {
@@ -108,12 +114,14 @@ class SettingController extends Controller
                     'app_name' => $request->input('app_name'),
                     'app_url' => $request->input('app_url'),
                     'login_page_heading' => $request->input('login_page_heading'),
+                    'allow_registration' => $allowReg
                 ]);
                 $this->setEnv('APP_NAME', $settings->app_name);
                 $this->setEnv('APP_URL', $request->app_url);
             }  else {
                 $settings->update([
                     'login_page_heading' => $request->input('login_page_heading'),
+                    'allow_registration' => $allowReg,
                 ]); 
             }
     

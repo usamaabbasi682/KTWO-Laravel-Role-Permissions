@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('app_name')->nullable(true);
             $table->string('app_url')->nullable(true);
             $table->string('login_page_heading')->nullable(true)->default('Welcome back! Please log in to access your account.');
+            $table->boolean('allow_registration')->nullable(true)->default(false);
+            $table->boolean('allow_forgot_pwd')->nullable(true)->default(false);
             $table->timestamps();
         });
         

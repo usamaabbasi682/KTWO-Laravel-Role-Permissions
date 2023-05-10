@@ -15,10 +15,13 @@
             </li>
             <!--end::Item-->
             <!--begin::Item-->
-            <li class="breadcrumb-item text-gray-600">View Management</li>
+            <li class="breadcrumb-item text-gray-600">Role Management</li>
             <!--end::Item-->
             <!--begin::Item-->
-            <li class="breadcrumb-item text-gray-500">Permissions</li>
+            <li class="breadcrumb-item text-gray-600">Roles</li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item text-gray-500">View Role</li>
             <!--end::Item-->
         </ul>
         <!--end::Breadcrumb-->

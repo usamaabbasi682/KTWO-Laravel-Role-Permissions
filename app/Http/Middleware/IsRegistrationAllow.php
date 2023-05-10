@@ -5,10 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\{Auth,Cache};
-use App\Models\User;
 
-class CheckIsLogin
+class IsRegistrationAllow
 {
     /**
      * Handle an incoming request.
@@ -17,12 +15,7 @@ class CheckIsLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
-            // Cache::put('loginUserId',Auth::id());
-            $result = User::find(Auth::id())->update([
-                'last_logged_in_at' => now(),
-            ]);
-        } 
+        return to_route('login');
         return $next($request);
     }
 }
