@@ -239,6 +239,29 @@
                         <!--end::Col-->
                     </div>
                     <!--end::Input group-->
+                    <div class="row mb-6">
+                        <div class="col-md-4">
+                            <!--begin::Label-->
+                            <div class="me-5">
+                                <!--begin::Label-->
+                                <label class="fs-6 fw-semibold">Allow Registration</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <div class="fs-7 fw-semibold text-muted">Allow users to register your portal</div>
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Label-->
+                        </div>
+                        <div class="col-md-8">
+                            <!--begin::Switch-->
+                            <label class="form-check form-switch form-check-custom form-check-solid">
+                                <!--begin::Input-->
+                                <input class="form-check-input" style="height: 23px;" @checked($settings->allow_registration) name="allow_reg" type="checkbox" value="{{ true; }}">
+                                <!--end::Input-->
+                            </label>
+                            <!--end::Switch-->
+                        </div>
+                    </div>
                 </div>
                 <!--end::Card body-->
                 <!--begin::Actions-->
