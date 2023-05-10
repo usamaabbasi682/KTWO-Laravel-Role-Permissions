@@ -252,5 +252,68 @@
         <!--end::Content-->
     </div>
     <!--end::Basic info-->
+
+
+        <!--begin::Basic info-->
+        <div class="card mb-5 mb-xl-10">
+            <!--begin::Card header-->
+            <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+                <!--begin::Card title-->
+                <div class="card-title m-0">
+                    <h3 class="fw-bold m-0">Change Auth(Login) Page Image</h3>
+                </div>
+                <!--end::Card title-->
+            </div>
+            <!--begin::Card header-->
+            <!--begin::Content-->
+            <div class="collapse show">
+                <!--begin::Form-->
+                <form class="form" action="{{ route('auth_image') }}" method="POST">
+                    {{ csrf_field() }}
+                    <!--begin::Card body-->
+                    <div class="card-body border-top p-9">
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            @forelse ($settings->getMedia('auth_page_media') as $authImage)
+                                                            <!--begin::Col-->
+                            <div class="col-lg-3 mb-3 text-center">
+                                <!--begin::Image input-->
+                                <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url({{ asset('assets/media/logos/default-logo.png') }})">
+                                    <!--begin::Preview existing avatar-->
+                                    @isset($authImage)
+                                        <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('storage/'.$authImage->id.'/'.$authImage->file_name) ?? '' }})"></div>
+                                    @else 
+                                        <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('assets/media/logos/default-logo.png') }})"></div>
+                                    @endisset
+                                    <!--end::Preview existing avatar-->
+                                    <!--begin::Label-->
+                                    <label class="btn btn-icon btn-active-color-primary w-50px h-25px bg-body">
+                                        <!--begin::Inputs-->
+                                        <input type="radio" name="img_path" @checked($loop->iteration == 1) value="{{ storage_path('/app/auth/'.$authImage->file_name) }}" />
+                                        <!--end::Inputs-->
+                                    </label>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Image input-->
+                            </div>
+                            <!--end::Col-->
+                            @empty
+                                
+                            @endforelse    
+                        </div>
+                        <!--end::Input group-->
+                    </div>
+                    <!--end::Card body-->
+                    <!--begin::Actions-->
+                    <div class="card-footer d-flex justify-content-end py-6 px-9">
+                        <button type="submit" class="btn btn-primary" name="btn_profile">Save Changes</button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Content-->
+        </div>
+        <!--end::Basic info-->
 </div>
 @endsection

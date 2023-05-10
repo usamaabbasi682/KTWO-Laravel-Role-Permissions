@@ -36,6 +36,7 @@ Route::middleware(['auth', 'verified','checkIsAdmin'])->group(function () {
     Route::post('assign-permission/roles/{role}',[RoleController::class,'assignPermissions'])->name('assign-permission.role');
     Route::post('change-email/users/{user}',[ProfileController::class,'change_email'])->name('user.change_email');
     Route::post('change-password/users/{user}',[ProfileController::class,'change_password'])->name('user.change_password');
+    Route::post('set-auth-image',[SettingController::class,'auth_image'])->name('auth_image');
     // Resource Routes
     Route::get('/home', [HomeController::class, 'index'])->name('home');    
     Route::resource('/users', UserController::class);

@@ -131,4 +131,29 @@ class SettingController extends Controller
         abort(404);
     }
 
+    public function auth_image(Request $request) {
+
+        if ((Permission::where('name','update-setting')->doesntExist() || !Auth::user()->hasPermissionTo('update-setting')) && !Auth::user()->hasRole('admin')) {
+            abort(403,'This action is unauthorized.');
+        } 
+
+        $settings = Setting::first();
+        $path = $request->input('img_path');
+        if($path != '') {
+            $type = "success";
+            $msg = "Image Selected Successfully.";
+
+            $authMedia = $settings->getFirstMedia('auth_selected_media');
+            if (!empty($authMedia)) {
+                $authMedia->delete();
+            }
+    
+            $settings->addMedia($path)->preservingOriginal()->toMediaCollection('auth_selected_media');
+        } else {
+            $type = "error";
+            $msg = "Something Went Wrong!!";
+        }
+        return to_route('settings.show')->with($type,$msg);
+    }
+
 }
