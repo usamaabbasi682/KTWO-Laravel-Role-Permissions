@@ -38,18 +38,8 @@ class DatabaseSeeder extends Seeder
             $adminRole->givePermissionTo($permission);
         }
 
-
-        // Create Default User
-        $user = User::create([
-            'name' => 'Usama Abbasi',
-            'email' => 'usamaabbasi682@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('12345678'),
-        ]);
-        $user->assignRole(['name' => 'user']);
-
         // User Factory
-        User::factory(20)->create()->each(function($user){
+        User::factory(5)->create()->each(function($user){
             $user->assignRole('user');
         });
     }
