@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\{UserAddRequest,UserEditRequest};
 use App\Repositories\UserRepository;
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::with('media','roles')->latest()->get();
         $roles = Role::orderBy('name')->get();
         return view('users.index',compact('users','roles'));
     }
