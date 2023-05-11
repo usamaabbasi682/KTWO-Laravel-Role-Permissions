@@ -45,25 +45,48 @@
         <!--end::Password-->
     </div>
     <!--end::Input group=-->
-    <!--begin::Wrapper-->
-    <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-        <div></div>
-        @if (Route::has('password.request'))
-            <!--begin::Link-->
-            <a href="{{ route('password.request') }}" class="link-primary">Forgot Password ?</a>
-            <!--end::Link-->
-        @endif
-    </div>
-    <!--end::Wrapper-->
-    <!--begin::Submit button-->
-    <div class="d-grid mb-10">
-        <button type="submit" name="btn_login" class="btn btn-primary">
-            <!--begin::Indicator label-->
-            <span class="indicator-label">Sign In</span>
-            <!--end::Indicator label-->
-        </button>
-    </div>
-    <!--end::Submit button-->
+    @if ($users_exists)
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+            <div></div>
+            @if (Route::has('password.request'))
+                <!--begin::Link-->
+                <a href="{{ route('password.request') }}" class="link-primary">Forgot Password ?</a>
+                <!--end::Link-->
+            @endif
+        </div>
+        <!--end::Wrapper-->
+        <!--begin::Submit button-->
+        <div class="d-grid mb-10">
+            <button type="submit" name="btn_login" class="btn btn-primary">
+                <!--begin::Indicator label-->
+                <span class="indicator-label">Sign In</span>
+                <!--end::Indicator label-->
+            </button>
+        </div>
+        <!--end::Submit button-->
+    @else
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+            <div></div>
+            @if (Route::has('password.request'))
+                <!--begin::Link-->
+                <a href="javascript:void(0)" class="link-primary">Forgot Password ?</a>
+                <!--end::Link-->
+            @endif
+        </div>
+        <!--end::Wrapper-->
+        <!--begin::Submit button-->
+        <div class="d-grid mb-10">
+            <button type="button" class="btn btn-danger">
+                <!--begin::Indicator label-->
+                <span class="indicator-label">Run Migration & Seeder !!</span>
+                <!--end::Indicator label-->
+            </button>
+        </div>
+        <!--end::Submit button-->
+    @endif
+    
     @if ($allowRegistration)
         <!--begin::Sign up-->
         <div class="text-gray-500 text-center fw-semibold fs-6">Not a Member yet?
