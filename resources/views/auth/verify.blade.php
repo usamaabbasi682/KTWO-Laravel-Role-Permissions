@@ -9,7 +9,11 @@
     <!--begin::Logo-->
     <div class="mb-14">
         <a href="#" class="">
-            <img alt="Logo" src="{{ asset('assets/media/logos/custom-2.svg') }}" class="h-40px" />
+            @isset($darkLogo)
+                <img alt="Logo" src="{{ asset('storage/'.$darkLogo->id.'/'.$darkLogo->file_name) ?? asset('assets/media/logos/dark-logo.png') }}" class="h-25px h-lg-65px" />
+            @else   
+                <img alt="Logo" src="{{ asset('assets/media/logos/dark-logo.png') }}" class="h-25px h-lg-65px" />
+            @endisset
         </a>
     </div>
     <!--end::Logo-->

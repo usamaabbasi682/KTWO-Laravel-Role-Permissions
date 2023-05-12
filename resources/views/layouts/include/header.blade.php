@@ -32,7 +32,7 @@
 		<!--begin::Logo-->
 		<a href="{{ route('home') }}" class="d-flex align-items-center">
 			@isset($lightLogo)
-				<img alt="Logo" src="{{ asset('storage/'.$lightLogo->id.'/'.$lightLogo->file_name) ?? asset('assets/media/logos/demo20.svg') }}" class="h-25px h-lg-30px" />
+				<img alt="Logo" src="{{ asset('storage/'.$lightLogo->id.'/'.$lightLogo->file_name) ?? asset('assets/media/logos/logo.png') }}" class="h-25px h-lg-30px" />
 			@else   
 				<img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="h-25px h-lg-30px" />
 			@endisset

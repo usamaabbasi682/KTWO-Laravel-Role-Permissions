@@ -47,9 +47,10 @@ class SettingController extends Controller
     {
         $settings = Setting::first();
         $light_logo=$settings->getFirstMedia('light_logo');
+        $dark_logo=$settings->getFirstMedia('dark_logo');
         $header_image=$settings->getFirstMedia('header_image');
         $favicon_icon=$settings->getFirstMedia('favicon_icon');
-        return view('settings.index',compact('light_logo','header_image','favicon_icon','settings'));
+        return view('settings.index',compact('light_logo','dark_logo','header_image','favicon_icon','settings'));
     }
 
     /**
@@ -83,6 +84,14 @@ class SettingController extends Controller
                     $lightLogo->delete();
                 }
                 $settings->addMediaFromRequest('light_logo')->toMediaCollection('light_logo');
+            }
+
+            if ($request->has('dark_logo')) {
+                $lightLogo = $settings->getFirstMedia('dark_logo');
+                if (!empty($lightLogo)) {
+                    $lightLogo->delete();
+                }
+                $settings->addMediaFromRequest('dark_logo')->toMediaCollection('dark_logo');
             }
     
             if ($request->has('header_image')) {

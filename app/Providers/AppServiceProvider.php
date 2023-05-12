@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         if (Schema::hasTable('settings')) {
             $setting=Setting::first();
             view()->share('lightLogo',$setting->getFirstMedia('light_logo'));
+            view()->share('darkLogo',$setting->getFirstMedia('dark_logo'));
             view()->share('faviconIcon',$setting->getFirstMedia('favicon_icon'));
             view()->share('header_image',$setting->getFirstMedia('header_image'));
             view()->share('login_heading',$setting->login_page_heading);
