@@ -60,7 +60,7 @@
                     <!--begin::Input group-->
                     <div class="row mb-6">
                         <!--begin::Col-->
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-3 text-center">
                             <!--begin::Image input-->
                             <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url({{ asset('assets/media/logos/default-logo.png') }})">
                                 <!--begin::Preview existing avatar-->
@@ -74,7 +74,7 @@
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                     <i class="bi bi-pencil-fill fs-7"></i>
                                     <!--begin::Inputs-->
-                                    <input type="file" name="light_logo" accept=".png, .jpg, .jpeg,.svg,.ico" />
+                                    <input type="file" name="light_logo" accept=".png, .jpg, .jpeg,.svg" />
                                     <input type="hidden" name="light_logo_remove" />
                                     <!--end::Inputs-->
                                 </label>
@@ -92,12 +92,49 @@
                             </div>
                             <!--end::Image input-->
                             <!--begin::Hint-->
-                            <div class="form-text">Select Light Logo (Allowed file types: png, jpg, jpeg, svg, ico)</div>
+                            <div class="form-text">Select Light Logo (Allowed file types: png, jpg, jpeg, svg)</div>
                             <!--end::Hint-->
                         </div>
                         <!--end::Col-->
                         <!--begin::Col-->
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-3 text-center">
+                            <!--begin::Image input-->
+                            <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url({{ asset('assets/media/logos/default-logo.png') }})">
+                                <!--begin::Preview existing avatar-->
+                                @isset($dark_logo) 
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('storage/'.$dark_logo->id.'/'.$dark_logo->file_name) ?? '' }})"></div>
+                                @else 
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ asset('assets/media/logos/default-logo.png')  }})"></div>
+                                @endisset
+                                <!--end::Preview existing avatar-->
+                                <!--begin::Label-->
+                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                    <!--begin::Inputs-->
+                                    <input type="file" name="dark_logo" accept=".png, .jpg, .jpeg,.svg" />
+                                    <input type="hidden" name="dark_logo_remove" />
+                                    <!--end::Inputs-->
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Cancel-->
+                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Cancel-->
+                                <!--begin::Remove-->
+                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Remove-->
+                            </div>
+                            <!--end::Image input-->
+                            <!--begin::Hint-->
+                            <div class="form-text">Select Dark Logo (Allowed file types: png, jpg, jpeg, svg)</div>
+                            <!--end::Hint-->
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-lg-3 text-center">
                             <!--begin::Image input-->
                             <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url({{ asset('assets/media/logos/default-logo.png') }})">
                                 <!--begin::Preview existing avatar-->
@@ -135,7 +172,7 @@
                         <!--end::Col-->
 
                         <!--begin::Col-->
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-3 text-center">
                             <!--begin::Image input-->
                             <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url({{ asset('assets/media/logos/default-logo.png') }})">
                                 <!--begin::Preview existing avatar-->

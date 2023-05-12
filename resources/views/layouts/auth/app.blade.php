@@ -17,7 +17,7 @@
 			@else    
 				@php $pageMedia=asset('assets/media/auth/bg4.jpg') @endphp
 			@endisset
-			<style>body { background-image: url({{ $pageMedia ?? '' }}); } [data-theme="dark"] body { background-image: url({{ asset('assets/media/auth/bg4-dark.jpg') }}); }</style>
+			<style>body { background-image: url({{ $pageMedia ?? '' }}); } [data-theme="dark"] body { background-image: url({{ $pageMedia ?? '' }}); }</style>
 			<!--end::Page bg image-->
 			<!--begin::Authentication - Sign-in -->
 			<div class="d-flex flex-column flex-column-fluid flex-lg-row">
@@ -63,8 +63,13 @@
 
 		@section('forgot_layout')
 		<div class="d-flex flex-column flex-root">
+			@isset($login_page_bg_media)
+				@php $pageMedia=asset('storage/'.$login_page_bg_media->id.'/'.$login_page_bg_media->file_name); @endphp
+			@else    
+				@php $pageMedia=asset('assets/media/auth/bg4.jpg') @endphp
+			@endisset
 			<!--begin::Page bg image-->
-			<style>body { background-image: url({{ asset('assets/media/auth/bg4.jpg') }}); } [data-theme="dark"] body { background-image: url({{ asset('assets/media/auth/bg4-dark.jpg') }}); }</style>
+			<style>body { background-image: url({{ $pageMedia ?? '' }}); } [data-theme="dark"] body { background-image: url({{ $pageMedia ?? '' }}); }</style>
 			<!--end::Page bg image-->
 			<div class="d-flex flex-column flex-center flex-column-fluid">
 				<!--begin::Content-->
